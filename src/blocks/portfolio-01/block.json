@@ -1,0 +1,17 @@
+{
+  "apiVersion": 2,
+  "name": "elabins-portfolio-blocks/portfolio-01",
+  "version": "0.1.0",
+  "title": "Portfolio 01",
+  "category": "elabins-portfolio-blocks",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "textdomain": "elabins-portfolio-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "script": "file:./script.js",
+  "render": "file:./render.php"
+}

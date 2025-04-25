@@ -43,6 +43,22 @@ function elabins_portfolio_blocks_load_assets() {
     "1.0",
     "all"
   );
+
+  wp_enqueue_style(
+    "font-awesome",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css",
+    [],
+    "1.0",
+    "all"
+  );
+
+  // wp_enqueue_style(
+  //   "aos",
+  //   "https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css",
+  //   [],
+  //   "1.0",
+  //   "all"
+  // );
 }
 add_action("wp_enqueue_scripts", "elabins_portfolio_blocks_load_assets");
 

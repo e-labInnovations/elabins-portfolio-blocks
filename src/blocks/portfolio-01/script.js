@@ -1,4 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    easing: "ease-in-out",
+    once: false,
+    mirror: true,
+    offset: 50,
+  });
+
+  // Wait for Tippy to be available
+  if (typeof tippy !== "undefined") {
+    // Initialize Tippy.js tooltips
+    tippy("[data-tooltip]", {
+      content: (reference) => reference.getAttribute("data-tooltip"),
+      animation: "shift-away",
+      arrow: true,
+      placement: "top",
+      theme: "gradient",
+      duration: [200, 150],
+      allowHTML: true,
+      interactive: true,
+      appendTo: document.body,
+    });
+  } else {
+    console.warn("Tippy.js not loaded yet");
+  }
+
   // Create Commit Activity Chart
   const commitActivity = document.querySelector(".commit-activity");
   if (commitActivity) {

@@ -3,6 +3,15 @@
   max-width: 1200px !important;
   margin: 0 auto !important;
   color: #333 !important;
+  padding: 30px !important;
+
+  @media (max-width: 768px) {
+    padding: 20px !important;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px !important;
+  }
 
   a {
     text-decoration: none !important;
@@ -1125,6 +1134,7 @@
       gap: 25px !important;
       max-width: 1200px !important;
       margin: 0 auto !important;
+      margin-bottom: 30px !important;
 
       @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -1751,5 +1761,18 @@
         }
       }
     }
+  }
+}
+
+/* Tippy Theme Customization */
+.tippy-box {
+  background: linear-gradient(135deg, #43cea2, #185a9d) !important;
+  border-radius: 6px !important;
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+  padding: 2px !important;
+
+  .tippy-arrow {
+    color: #185a9d !important;
   }
 }

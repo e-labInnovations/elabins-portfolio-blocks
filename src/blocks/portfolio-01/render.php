@@ -162,11 +162,11 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
             <div class="header-links">
               <?php if (!empty($project['links']['github'])): ?>
                 <a href="<?php echo $project['links']['github']; ?>" target="_blank" class="project-link"
-                  title="View on GitHub">
+                  data-tooltip="View on GitHub">
                   <i class="fab fa-github"></i>
                 </a>
               <?php else: ?>
-                <span class="project-link private-link" title="Private/Closed Source Project">
+                <span class="project-link private-link" data-tooltip="Private/Closed Source Project">
                   <i class="fas fa-lock"></i>
                 </span>
               <?php endif; ?>
@@ -198,7 +198,9 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
 
             <div class="skills-list">
               <?php foreach ($project['skills'] as $skill): ?>
-                <span class="skill-tag"><?php echo $skill; ?></span>
+                <span class="skill-tag" data-tooltip="<?php echo $skill; ?>">
+                  <?php echo $skill; ?>
+                </span>
               <?php endforeach; ?>
             </div>
           </div>
@@ -212,7 +214,8 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
     <h2>Tech Stack & Tools</h2>
     <div class="skills-grid">
       <?php foreach ($profileData['techStack'] as $tech): ?>
-        <a href="<?php echo $tech['link']; ?>" target="_blank" class="skill-item" data-aos="zoom-in">
+        <a href="<?php echo $tech['link']; ?>" target="_blank" class="skill-item" data-aos="zoom-in"
+          data-tooltip="<?php echo $tech['name']; ?>">
           <div class="skill-icon">
             <img src="<?php echo $tech['image']; ?>" alt="<?php echo $tech['name']; ?>" loading="lazy" />
           </div>
@@ -252,7 +255,7 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
             </div>
             <p class="award-description"><?php echo $award['description']; ?></p>
             <?php if (!empty($award['link'])): ?>
-              <a href="<?php echo $award['link']; ?>" target="_blank" class="award-link">
+              <a href="<?php echo $award['link']; ?>" target="_blank" class="award-link" data-tooltip="View award details">
                 Learn More
                 <i class="fas fa-external-link-alt"></i>
               </a>
@@ -375,20 +378,20 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
           $repoCount = $githubStatsData['langRepoCount'][$lang] ?? 0;
           $starCount = $githubStatsData['langStarCount'][$lang] ?? 0;
           $percentage = ($commits / $totalCommits) * 100;
+          $lang_icon = strtolower($lang);
+          $replacements = [
+            'c++' => 'cpp',
+            'unknown' => 'github',
+            'c#' => 'cs',
+            'objective-c' => 'objectivec',
+            'jupyter notebook' => 'jupyter',
+            'shell' => 'bash'
+          ];
         ?>
           <div class="language-card" data-aos="zoom-in">
             <div class="language-header">
               <div class="language-icon">
                 <img src="https://skillicons.dev/icons?i=<?php
-                                                          $lang_icon = strtolower($lang);
-                                                          $replacements = [
-                                                            'c++' => 'cpp',
-                                                            'unknown' => 'github',
-                                                            'c#' => 'cs',
-                                                            'objective-c' => 'objectivec',
-                                                            'jupyter notebook' => 'jupyter',
-                                                            'shell' => 'bash'
-                                                          ];
                                                           echo isset($replacements[$lang_icon]) ? $replacements[$lang_icon] : $lang_icon;
                                                           ?>" alt="<?php echo $lang; ?>">
               </div>
@@ -398,15 +401,15 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
               </div>
             </div>
             <div class="language-stats">
-              <div class="stat-item" title="<?php echo $repoCount; ?> Repositories">
+              <div class="stat-item" data-tooltip="<?php echo $repoCount; ?> Repositories">
                 <i class="fas fa-code-branch"></i>
                 <span><?php echo $repoCount; ?></span>
               </div>
-              <div class="stat-item" title="<?php echo $commits; ?> Commits">
+              <div class="stat-item" data-tooltip="<?php echo $commits; ?> Commits">
                 <i class="fas fa-code"></i>
                 <span><?php echo $commits; ?></span>
               </div>
-              <div class="stat-item" title="<?php echo $starCount; ?> Stars">
+              <div class="stat-item" data-tooltip="<?php echo $starCount; ?> Stars">
                 <i class="fas fa-star"></i>
                 <span><?php echo $starCount; ?></span>
               </div>
@@ -434,15 +437,16 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
         ?>
           <div class="repo-card" data-aos="fade-up">
             <div class="repo-header">
-              <a href="<?php echo $githubBaseUrl . '/' . $repo; ?>" target="_blank" class="repo-name">
+              <a href="<?php echo $githubBaseUrl . '/' . $repo; ?>" target="_blank" class="repo-name"
+                data-tooltip="View repository">
                 <?php echo $repo; ?>
               </a>
               <div class="repo-stats">
-                <div class="stat-item" title="<?php echo $commits; ?> Commits">
+                <div class="stat-item" data-tooltip="<?php echo $commits; ?> Commits">
                   <i class="fas fa-code"></i>
                   <span><?php echo $commits; ?></span>
                 </div>
-                <div class="stat-item" title="<?php echo $stars; ?> Stars">
+                <div class="stat-item" data-tooltip="<?php echo $stars; ?> Stars">
                   <i class="fas fa-star"></i>
                   <span><?php echo $stars; ?></span>
                 </div>
@@ -475,8 +479,8 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
               default => 'fas fa-link'
             };
           ?>
-            <a href="<?php echo $social['link']; ?>" target="_blank" class="social-link" data-aos="zoom-in"
-              data-aos-delay="<?php echo $delay; ?>" title="<?php echo $social['title']; ?>">
+            <a href="<?php echo $social['link']; ?>" target="_blank" class="social-link"
+              data-tooltip="<?php echo $social['title']; ?>" data-aos="zoom-in" data-aos-delay="<?php echo $delay; ?>">
               <i class="<?php echo $icon; ?>"></i>
             </a>
           <?php

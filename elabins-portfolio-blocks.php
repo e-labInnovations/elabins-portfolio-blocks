@@ -60,13 +60,54 @@ function elabins_portfolio_blocks_load_assets() {
     true
   );
 
-  // wp_enqueue_style(
-  //   "aos",
-  //   "https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css",
-  //   [],
-  //   "1.0",
-  //   "all"
-  // );
+  wp_enqueue_style(
+    "aos",
+    "https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css",
+    [],
+    "1.0",
+    "all"
+  );
+
+  wp_enqueue_script(
+    "aos",
+    "https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js",
+    [],
+    "1.0",
+    true
+  );
+
+  // Add Tippy.js with its dependencies
+  wp_enqueue_style(
+    "tippy",
+    "https://cdn.jsdelivr.net/npm/tippy.js@6/dist/tippy.css",
+    [],
+    "1.0",
+    "all"
+  );
+
+  wp_enqueue_style(
+    "tippy-animations",
+    "https://cdn.jsdelivr.net/npm/tippy.js@6/animations/shift-away.css",
+    ["tippy"],
+    "1.0",
+    "all"
+  );
+
+  wp_enqueue_script(
+    "tippy",
+    "https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js",
+    [],
+    "2.0",
+    true
+  );
+
+  wp_enqueue_script(
+    "tippy-bundle",
+    "https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js",
+    ["tippy"],
+    "6.0",
+    true
+  );
 }
 add_action("wp_enqueue_scripts", "elabins_portfolio_blocks_load_assets");
 

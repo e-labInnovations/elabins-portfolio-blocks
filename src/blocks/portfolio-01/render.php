@@ -21,18 +21,18 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
 <section class="elabins-portfolio-01">
   <!--- Schema Data --->
   <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Person",
-    "name": "<?php echo $profileData['profile']['name']; ?>",
-    "image": "<?php echo $profileData['profile']['profile_image']; ?>",
-    "jobTitle": "<?php echo $profileData['profile']['title']; ?>",
-    "url": "https://elabins.com/about-me/",
-    "sameAs": [
-      <?php foreach ($profileData['socialLinks'] as $link) : ?> "<?php echo $link['link']; ?>",
-      <?php endforeach; ?>
-    ]
-  }
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "<?php echo $profileData['profile']['name']; ?>",
+      "image": "<?php echo $profileData['profile']['profile_image']; ?>",
+      "jobTitle": "<?php echo $profileData['profile']['title']; ?>",
+      "url": "https://elabins.com/about-me/",
+      "sameAs": [
+        <?php foreach ($profileData['socialLinks'] as $link) : ?> "<?php echo $link['link']; ?>",
+        <?php endforeach; ?>
+      ]
+    }
   </script>
 
   <!-- Hero Section -->
@@ -43,9 +43,11 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
         alt="<?php echo $profileData['profile']['name']; ?>" data-aos="zoom-in" />
       <div class="name-title">
         <h1 data-aos="fade-up" data-aos-delay="300"><?php echo $profileData['profile']['name']; ?></h1>
-        <p class="typing-effect" data-aos="fade-up" data-aos-delay="500">
-          <?php echo $profileData['profile']['title']; ?>
-        </p>
+        <div class="typewriter">
+          <h2>
+            <?php echo $profileData['profile']['title']; ?>
+          </h2>
+        </div>
       </div>
     </div>
   </div>
@@ -55,14 +57,14 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
     <div class="about-text" data-aos="fade-right" data-aos-delay="100">
       <h2>About Me</h2>
       <?php foreach ($profileData['profile']['about'] as $paragraph) : ?>
-      <p><?php echo $paragraph; ?></p>
+        <p><?php echo $paragraph; ?></p>
       <?php endforeach; ?>
     </div>
     <div class="about-card" data-aos="fade-left" data-aos-delay="300">
       <h2>Quick Facts</h2>
       <ul>
         <?php foreach ($profileData['profile']['facts'] as $fact) : ?>
-        <li><i class="fas <?php echo $fact['icon']; ?>"></i> <?php echo $fact['content']; ?></li>
+          <li><i class="fas <?php echo $fact['icon']; ?>"></i> <?php echo $fact['content']; ?></li>
         <?php endforeach; ?>
       </ul>
     </div>
@@ -73,29 +75,29 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
     <h2>Education</h2>
     <div class="education-grid">
       <?php foreach ($profileData['education'] as $edu) : ?>
-      <div class="education-card" data-aos="fade-up">
-        <div class="education-meta">
-          <img src="<?php echo $edu['logo']; ?>" alt="<?php echo $edu['college']; ?>" />
-          <div class="meta-info">
-            <div class="duration">
-              <i class="fas fa-calendar-alt"></i>
-              <?php
+        <div class="education-card" data-aos="fade-up">
+          <div class="education-meta">
+            <img src="<?php echo $edu['logo']; ?>" alt="<?php echo $edu['college']; ?>" />
+            <div class="meta-info">
+              <div class="duration">
+                <i class="fas fa-calendar-alt"></i>
+                <?php
                 echo date('M Y', strtotime($edu['startDate'])) . ' - ' .
                   ($edu['endDate'] ? date('M Y', strtotime($edu['endDate'])) : 'Present');
                 ?>
-            </div>
-            <div class="university">
-              <i class="fas fa-university"></i>
-              <?php echo $edu['university']; ?>
+              </div>
+              <div class="university">
+                <i class="fas fa-university"></i>
+                <?php echo $edu['university']; ?>
+              </div>
             </div>
           </div>
+          <div class="education-content">
+            <h3 class="degree"><?php echo $edu['degree']; ?></h3>
+            <p class="field"><?php echo $edu['fieldOfStudy']; ?></p>
+            <p class="college"><?php echo $edu['college']; ?></p>
+          </div>
         </div>
-        <div class="education-content">
-          <h3 class="degree"><?php echo $edu['degree']; ?></h3>
-          <p class="field"><?php echo $edu['fieldOfStudy']; ?></p>
-          <p class="college"><?php echo $edu['college']; ?></p>
-        </div>
-      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -105,37 +107,37 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
     <h2>Experience</h2>
     <div class="experience-grid">
       <?php foreach ($profileData['experience'] as $exp) : ?>
-      <div class="experience-card" data-aos="fade-up">
-        <div class="experience-meta">
-          <img src="<?php echo $exp['company']['logo']; ?>" alt="<?php echo $exp['company']['name']; ?>" />
-          <div class="meta-info">
-            <div class="duration">
-              <i class="fas fa-calendar-alt"></i>
-              <?php
+        <div class="experience-card" data-aos="fade-up">
+          <div class="experience-meta">
+            <img src="<?php echo $exp['company']['logo']; ?>" alt="<?php echo $exp['company']['name']; ?>" />
+            <div class="meta-info">
+              <div class="duration">
+                <i class="fas fa-calendar-alt"></i>
+                <?php
                 echo date('M Y', strtotime($exp['startDate'])) . ' - ' .
                   ($exp['endDate'] ? date('M Y', strtotime($exp['endDate'])) : 'Present');
                 ?>
-            </div>
-            <div class="location">
-              <i class="fas fa-map-marker-alt"></i>
-              <?php echo $exp['location']; ?> • <?php echo $exp['locationType']; ?>
+              </div>
+              <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <?php echo $exp['location']; ?> • <?php echo $exp['locationType']; ?>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="experience-content">
-          <h3 class="title"><?php echo $exp['title']; ?></h3>
-          <a href="<?php echo $exp['company']['link']; ?>" target="_blank" class="company">
-            <?php echo $exp['company']['name']; ?>
-            <i class="fas fa-external-link-alt"></i>
-          </a>
-          <div class="type">
-            <span class="badge"><?php echo $exp['employmentType']; ?></span>
+          <div class="experience-content">
+            <h3 class="title"><?php echo $exp['title']; ?></h3>
+            <a href="<?php echo $exp['company']['link']; ?>" target="_blank" class="company">
+              <?php echo $exp['company']['name']; ?>
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+            <div class="type">
+              <span class="badge"><?php echo $exp['employmentType']; ?></span>
+            </div>
+            <?php if ($exp['description']): ?>
+              <p class="description"><?php echo $exp['description']; ?></p>
+            <?php endif; ?>
           </div>
-          <?php if ($exp['description']): ?>
-          <p class="description"><?php echo $exp['description']; ?></p>
-          <?php endif; ?>
         </div>
-      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -145,62 +147,62 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
     <h2>Projects</h2>
     <div class="projects-grid">
       <?php foreach ($profileData['projects'] as $project) : ?>
-      <div class="project-card" data-aos="fade-up">
-        <div class="project-header">
-          <div class="header-content">
-            <h3><?php echo $project['name']; ?></h3>
-            <div class="duration">
-              <i class="fas fa-calendar-alt"></i>
-              <?php
+        <div class="project-card" data-aos="fade-up">
+          <div class="project-header">
+            <div class="header-content">
+              <h3><?php echo $project['name']; ?></h3>
+              <div class="duration">
+                <i class="fas fa-calendar-alt"></i>
+                <?php
                 echo date('M Y', strtotime($project['startDate'])) . ' - ' .
                   ($project['endDate'] ? date('M Y', strtotime($project['endDate'])) : 'Present');
                 ?>
+              </div>
+            </div>
+            <div class="header-links">
+              <?php if (!empty($project['links']['github'])): ?>
+                <a href="<?php echo $project['links']['github']; ?>" target="_blank" class="project-link"
+                  title="View on GitHub">
+                  <i class="fab fa-github"></i>
+                </a>
+              <?php else: ?>
+                <span class="project-link private-link" title="Private/Closed Source Project">
+                  <i class="fas fa-lock"></i>
+                </span>
+              <?php endif; ?>
             </div>
           </div>
-          <div class="header-links">
-            <?php if (!empty($project['links']['github'])): ?>
-            <a href="<?php echo $project['links']['github']; ?>" target="_blank" class="project-link"
-              title="View on GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-            <?php else: ?>
-            <span class="project-link private-link" title="Private/Closed Source Project">
-              <i class="fas fa-lock"></i>
-            </span>
-            <?php endif; ?>
-          </div>
-        </div>
 
-        <div class="project-content">
-          <p class="description"><?php echo $project['description']; ?></p>
+          <div class="project-content">
+            <p class="description"><?php echo $project['description']; ?></p>
 
-          <?php if (!empty($project['collaborators'])): ?>
-          <div class="collaborators">
-            <h4>Collaborators</h4>
-            <div class="collaborators-list">
-              <?php foreach ($project['collaborators'] as $collaborator): ?>
-              <div class="collaborator">
-                <?php if (!empty($collaborator['link'])): ?>
-                <a href="<?php echo $collaborator['link']; ?>" target="_blank" class="collaborator-name">
-                  <?php echo $collaborator['name']; ?>
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-                <?php else: ?>
-                <span class="collaborator-name"><?php echo $collaborator['name']; ?></span>
-                <?php endif; ?>
+            <?php if (!empty($project['collaborators'])): ?>
+              <div class="collaborators">
+                <h4>Collaborators</h4>
+                <div class="collaborators-list">
+                  <?php foreach ($project['collaborators'] as $collaborator): ?>
+                    <div class="collaborator">
+                      <?php if (!empty($collaborator['link'])): ?>
+                        <a href="<?php echo $collaborator['link']; ?>" target="_blank" class="collaborator-name">
+                          <?php echo $collaborator['name']; ?>
+                          <i class="fas fa-external-link-alt"></i>
+                        </a>
+                      <?php else: ?>
+                        <span class="collaborator-name"><?php echo $collaborator['name']; ?></span>
+                      <?php endif; ?>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
               </div>
+            <?php endif; ?>
+
+            <div class="skills-list">
+              <?php foreach ($project['skills'] as $skill): ?>
+                <span class="skill-tag"><?php echo $skill; ?></span>
               <?php endforeach; ?>
             </div>
           </div>
-          <?php endif; ?>
-
-          <div class="skills-list">
-            <?php foreach ($project['skills'] as $skill): ?>
-            <span class="skill-tag"><?php echo $skill; ?></span>
-            <?php endforeach; ?>
-          </div>
         </div>
-      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -210,14 +212,14 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
     <h2>Tech Stack & Tools</h2>
     <div class="skills-grid">
       <?php foreach ($profileData['techStack'] as $tech): ?>
-      <a href="<?php echo $tech['link']; ?>" target="_blank" class="skill-item" data-aos="zoom-in">
-        <div class="skill-icon">
-          <img src="<?php echo $tech['image']; ?>" alt="<?php echo $tech['name']; ?>" loading="lazy" />
-        </div>
-        <span class="skill-name">
-          <?php echo $tech['name']; ?>
-        </span>
-      </a>
+        <a href="<?php echo $tech['link']; ?>" target="_blank" class="skill-item" data-aos="zoom-in">
+          <div class="skill-icon">
+            <img src="<?php echo $tech['image']; ?>" alt="<?php echo $tech['name']; ?>" loading="lazy" />
+          </div>
+          <span class="skill-name">
+            <?php echo $tech['name']; ?>
+          </span>
+        </a>
       <?php endforeach; ?>
     </div>
   </div>
@@ -227,36 +229,36 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
     <h2>Honors & Awards</h2>
     <div class="awards-grid">
       <?php foreach ($profileData['honorsAndAwards'] as $award): ?>
-      <div class="award-card" data-aos="fade-up">
-        <div class="award-header">
-          <?php if (!empty($award['image'])): ?>
-          <img src="<?php echo $award['image']; ?>" alt="<?php echo $award['title']; ?>" />
-          <?php else: ?>
-          <div class="award-icon">
-            <i class="fas fa-trophy"></i>
+        <div class="award-card" data-aos="fade-up">
+          <div class="award-header">
+            <?php if (!empty($award['image'])): ?>
+              <img src="<?php echo $award['image']; ?>" alt="<?php echo $award['title']; ?>" />
+            <?php else: ?>
+              <div class="award-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+            <?php endif; ?>
+            <div class="award-date">
+              <i class="fas fa-calendar"></i>
+              <?php echo date('M Y', strtotime($award['issueDate'])); ?>
+            </div>
           </div>
-          <?php endif; ?>
-          <div class="award-date">
-            <i class="fas fa-calendar"></i>
-            <?php echo date('M Y', strtotime($award['issueDate'])); ?>
-          </div>
-        </div>
 
-        <div class="award-content">
-          <h3><?php echo $award['title']; ?></h3>
-          <div class="award-issuer">
-            <i class="fas fa-award"></i>
-            <?php echo $award['issuer']; ?>
+          <div class="award-content">
+            <h3><?php echo $award['title']; ?></h3>
+            <div class="award-issuer">
+              <i class="fas fa-award"></i>
+              <?php echo $award['issuer']; ?>
+            </div>
+            <p class="award-description"><?php echo $award['description']; ?></p>
+            <?php if (!empty($award['link'])): ?>
+              <a href="<?php echo $award['link']; ?>" target="_blank" class="award-link">
+                Learn More
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            <?php endif; ?>
           </div>
-          <p class="award-description"><?php echo $award['description']; ?></p>
-          <?php if (!empty($award['link'])): ?>
-          <a href="<?php echo $award['link']; ?>" target="_blank" class="award-link">
-            Learn More
-            <i class="fas fa-external-link-alt"></i>
-          </a>
-          <?php endif; ?>
         </div>
-      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -374,10 +376,10 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
           $starCount = $githubStatsData['langStarCount'][$lang] ?? 0;
           $percentage = ($commits / $totalCommits) * 100;
         ?>
-        <div class="language-card" data-aos="zoom-in">
-          <div class="language-header">
-            <div class="language-icon">
-              <img src="https://skillicons.dev/icons?i=<?php
+          <div class="language-card" data-aos="zoom-in">
+            <div class="language-header">
+              <div class="language-icon">
+                <img src="https://skillicons.dev/icons?i=<?php
                                                           $lang_icon = strtolower($lang);
                                                           $replacements = [
                                                             'c++' => 'cpp',
@@ -389,31 +391,99 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
                                                           ];
                                                           echo isset($replacements[$lang_icon]) ? $replacements[$lang_icon] : $lang_icon;
                                                           ?>" alt="<?php echo $lang; ?>">
+              </div>
+              <div class="language-name">
+                <h4><?php echo $lang; ?></h4>
+                <p><?php echo number_format($percentage, 1); ?>% of commits</p>
+              </div>
             </div>
-            <div class="language-name">
-              <h4><?php echo $lang; ?></h4>
-              <p><?php echo number_format($percentage, 1); ?>% of commits</p>
+            <div class="language-stats">
+              <div class="stat-item" title="<?php echo $repoCount; ?> Repositories">
+                <i class="fas fa-code-branch"></i>
+                <span><?php echo $repoCount; ?></span>
+              </div>
+              <div class="stat-item" title="<?php echo $commits; ?> Commits">
+                <i class="fas fa-code"></i>
+                <span><?php echo $commits; ?></span>
+              </div>
+              <div class="stat-item" title="<?php echo $starCount; ?> Stars">
+                <i class="fas fa-star"></i>
+                <span><?php echo $starCount; ?></span>
+              </div>
+            </div>
+            <div class="language-progress">
+              <div class="progress-bar" style="width: <?php echo $percentage; ?>%"></div>
             </div>
           </div>
-          <div class="language-stats">
-            <div class="stat-item" title="<?php echo $repoCount; ?> Repositories">
-              <i class="fas fa-code-branch"></i>
-              <span><?php echo $repoCount; ?></span>
-            </div>
-            <div class="stat-item" title="<?php echo $commits; ?> Commits">
-              <i class="fas fa-code"></i>
-              <span><?php echo $commits; ?></span>
-            </div>
-            <div class="stat-item" title="<?php echo $starCount; ?> Stars">
-              <i class="fas fa-star"></i>
-              <span><?php echo $starCount; ?></span>
-            </div>
-          </div>
-          <div class="language-progress">
-            <div class="progress-bar" style="width: <?php echo $percentage; ?>%"></div>
-          </div>
-        </div>
         <?php endforeach; ?>
+      </div>
+    </div>
+
+    <!-- Top Repositories -->
+    <?php
+    // Get top 5 repositories by commit count with their descriptions
+    $topRepos = array_slice($githubStatsData['repoCommitCount'], 0, 5, true);
+    $githubBaseUrl = rtrim($githubStatsData['user']['htmlUrl'], '/');
+    ?>
+    <div class="top-repos" data-aos="fade-up">
+      <h3>Top Repositories by Commits</h3>
+      <div class="repos-list">
+        <?php foreach ($topRepos as $repo => $commits):
+          $stars = $githubStatsData['repoStarCount'][$repo] ?? 0;
+          $description = $githubStatsData['repoCommitCountDescriptions'][$repo] ?? 'No description available';
+        ?>
+          <div class="repo-card" data-aos="fade-up">
+            <div class="repo-header">
+              <a href="<?php echo $githubBaseUrl . '/' . $repo; ?>" target="_blank" class="repo-name">
+                <?php echo $repo; ?>
+              </a>
+              <div class="repo-stats">
+                <div class="stat-item" title="<?php echo $commits; ?> Commits">
+                  <i class="fas fa-code"></i>
+                  <span><?php echo $commits; ?></span>
+                </div>
+                <div class="stat-item" title="<?php echo $stars; ?> Stars">
+                  <i class="fas fa-star"></i>
+                  <span><?php echo $stars; ?></span>
+                </div>
+              </div>
+            </div>
+            <p class="repo-description"><?php echo $description; ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section" data-aos="fade-up">
+      <div class="contact-bg"></div>
+      <div class="contact-content">
+        <h2>Let's Connect</h2>
+        <p>Feel free to reach out for collaborations or just a friendly chat</p>
+        <div class="social-links">
+          <?php
+          $delay = 100;
+          foreach ($profileData['socialLinks'] as $social):
+            $icon = match ($social['title']) {
+              'GitHub' => 'fab fa-github',
+              'LinkedIn' => 'fab fa-linkedin-in',
+              'Twitter' => 'fab fa-twitter',
+              'Facebook' => 'fab fa-facebook-f',
+              'Instagram' => 'fab fa-instagram',
+              'Telegram' => 'fab fa-telegram-plane',
+              'YouTube' => 'fab fa-youtube',
+              default => 'fas fa-link'
+            };
+          ?>
+            <a href="<?php echo $social['link']; ?>" target="_blank" class="social-link" data-aos="zoom-in"
+              data-aos-delay="<?php echo $delay; ?>" title="<?php echo $social['title']; ?>">
+              <i class="<?php echo $icon; ?>"></i>
+            </a>
+          <?php
+            $delay += 50;
+          endforeach;
+          ?>
+        </div>
       </div>
     </div>
   </div>

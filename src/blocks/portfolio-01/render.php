@@ -221,4 +221,43 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
       <?php endforeach; ?>
     </div>
   </div>
+
+  <!-- Honors & Awards Section -->
+  <div class="awards-section" data-aos="fade-up">
+    <h2>Honors & Awards</h2>
+    <div class="awards-grid">
+      <?php foreach ($profileData['honorsAndAwards'] as $award): ?>
+        <div class="award-card" data-aos="fade-up">
+          <div class="award-header">
+            <?php if (!empty($award['image'])): ?>
+              <img src="<?php echo $award['image']; ?>" alt="<?php echo $award['title']; ?>" />
+            <?php else: ?>
+              <div class="award-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+            <?php endif; ?>
+            <div class="award-date">
+              <i class="fas fa-calendar"></i>
+              <?php echo date('M Y', strtotime($award['issueDate'])); ?>
+            </div>
+          </div>
+
+          <div class="award-content">
+            <h3><?php echo $award['title']; ?></h3>
+            <div class="award-issuer">
+              <i class="fas fa-award"></i>
+              <?php echo $award['issuer']; ?>
+            </div>
+            <p class="award-description"><?php echo $award['description']; ?></p>
+            <?php if (!empty($award['link'])): ?>
+              <a href="<?php echo $award['link']; ?>" target="_blank" class="award-link">
+                Learn More
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            <?php endif; ?>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
 </section>

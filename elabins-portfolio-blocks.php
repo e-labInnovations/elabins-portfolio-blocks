@@ -52,6 +52,14 @@ function elabins_portfolio_blocks_load_assets() {
     "all"
   );
 
+  wp_enqueue_script(
+    "chartjs",
+    "https://cdn.jsdelivr.net/npm/chart.js",
+    [],
+    "1.0",
+    true
+  );
+
   // wp_enqueue_style(
   //   "aos",
   //   "https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css",

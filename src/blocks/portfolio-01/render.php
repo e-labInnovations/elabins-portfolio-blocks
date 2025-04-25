@@ -260,4 +260,87 @@ $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
       <?php endforeach; ?>
     </div>
   </div>
+
+  <!-- GitHub Details Section -->
+  <div class="github-section" data-aos="fade-up">
+    <h2>GitHub Statistics</h2>
+    <div class="github-grid">
+      <div class="github-card" data-aos="fade-up">
+        <div class="github-icon">
+          <i class="fas fa-code-branch"></i>
+        </div>
+        <div class="github-content">
+          <h3>Public Repositories</h3>
+          <p class="github-stat"><?php echo $githubStatsData['user']['publicRepos']; ?></p>
+        </div>
+      </div>
+
+      <div class="github-card" data-aos="fade-up">
+        <div class="github-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="github-content">
+          <h3>GitHub Followers</h3>
+          <p class="github-stat"><?php echo $githubStatsData['user']['followers']; ?></p>
+        </div>
+      </div>
+
+      <div class="github-card" data-aos="fade-up">
+        <div class="github-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="github-content">
+          <h3>Total Stars</h3>
+          <p class="github-stat"><?php echo array_sum($githubStatsData['repoStarCount']); ?></p>
+        </div>
+      </div>
+
+      <div class="github-card" data-aos="fade-up">
+        <div class="github-icon">
+          <i class="fas fa-code-commit"></i>
+        </div>
+        <div class="github-content">
+          <h3>Total Commits</h3>
+          <p class="github-stat"><?php echo array_sum($githubStatsData['quarterCommitCount']); ?></p>
+        </div>
+      </div>
+
+      <div class="github-card" data-aos="fade-up">
+        <div class="github-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <div class="github-content">
+          <h3>Languages Used</h3>
+          <p class="github-stat"><?php echo count($githubStatsData['langRepoCount']); ?></p>
+        </div>
+      </div>
+
+      <div class="github-card" data-aos="fade-up">
+        <div class="github-icon">
+          <i class="fas fa-file-code"></i>
+        </div>
+        <div class="github-content">
+          <h3>Public Gists</h3>
+          <p class="github-stat"><?php echo $githubStatsData['user']['publicGists']; ?></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commit Activity Graph -->
+    <?php
+    // Sort and get last 12 quarters
+    $quarters = array_slice(array_keys($githubStatsData['quarterCommitCount']), -12);
+    $commitData = array_map(function ($quarter) use ($githubStatsData) {
+      return $githubStatsData['quarterCommitCount'][$quarter];
+    }, $quarters);
+    ?>
+    <div class="commit-activity" data-aos="fade-up"
+      data-quarters="<?php echo htmlspecialchars(json_encode($quarters)); ?>"
+      data-commits="<?php echo htmlspecialchars(json_encode($commitData)); ?>">
+      <h3>Commit Activity</h3>
+      <div class="chart-container">
+        <canvas id="commitChart"></canvas>
+      </div>
+    </div>
+  </div>
 </section>

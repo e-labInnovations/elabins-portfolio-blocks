@@ -8,7 +8,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Get version from plugin file
-VERSION=$(grep -oP "Version:\s*\K[0-9.]+" elabins-portfolio-block.php)
+VERSION=$(grep -oP "Version:\s*\K[0-9.]+" elabins-portfolio-blocks.php)
 if [ -z "$VERSION" ]; then
     echo -e "${RED}❌ Could not extract version from plugin file${NC}"
     exit 1

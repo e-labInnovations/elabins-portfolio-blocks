@@ -2,20 +2,32 @@
 
 // $profile = wp_remote_get('https://raw.githubusercontent.com/e-labInnovations/e-labInnovations/refs/heads/master/portfolio-data.json');
 // $githubStats = wp_remote_get('https://raw.githubusercontent.com/e-labInnovations/e-labInnovations/refs/heads/master/github-stats.json');
+// $profile = wp_remote_get('http://localhost:8881/wp-content/plugins/elabins-portfolio-blocks/assets/sample-data/portfolio-data.json');
+// $githubStats = wp_remote_get('http://localhost:8881/wp-content/plugins/elabins-portfolio-blocks/assets/sample-data/github-stats.json');
 
-$sampleDataUrl = plugins_url('assets/sample-data/', __FILE__);
-$sampleDataUrl = ELABINS_PORTFOLIO_BLOCKS_URL . "/assets/sample-data/";
+if (!isset($attributes['portfolioJsonUrl']) || !isset($attributes['githubStatsJsonUrl'])) {
+  echo '<div class="elabins-portfolio-error">Please configure the portfolio and GitHub stats URLs in the block settings.</div>';
+  return;
+}
 
-$profile = wp_remote_get($sampleDataUrl . "portfolio-data.json");
-$githubStats = wp_remote_get($sampleDataUrl . "github-stats.json");
+$portfolioJsonUrl = $attributes['portfolioJsonUrl'];
+$githubStatsJsonUrl = $attributes['githubStatsJsonUrl'];
+
+$profile = wp_remote_get($portfolioJsonUrl);
+$githubStats = wp_remote_get($githubStatsJsonUrl);
 
 if (is_wp_error($profile) || is_wp_error($githubStats)) {
-  echo '<div class="error">Failed to load portfolio data. Please try again later.</div>';
+  echo '<div class="error">Failed to load portfolio data. Please verify the URLs and try again.</div>';
   return;
 }
 
 $profileData = json_decode(wp_remote_retrieve_body($profile), true);
 $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
+
+if (!$profileData || !$githubStatsData) {
+  echo '<div class="error">Invalid JSON data. Please check the data format.</div>';
+  return;
+}
 ?>
 
 <section class="elabins-portfolio-01">

@@ -1764,6 +1764,19 @@
   }
 }
 
+.elabins-portfolio-error {
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  border-radius: 8px;
+  color: #dc2626;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
 /* Tippy Theme Customization */
 .tippy-box {
   background: linear-gradient(135deg, #43cea2, #185a9d) !important;

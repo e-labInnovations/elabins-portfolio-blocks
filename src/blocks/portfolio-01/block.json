@@ -1,9 +1,12 @@
 {
-  "apiVersion": 2,
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
   "name": "elabins-portfolio-blocks/portfolio-01",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "Portfolio 01",
   "category": "elabins-portfolio-blocks",
+  "description": "A beautiful portfolio block with GitHub stats integration",
+  "example": {},
   "supports": {
     "html": false,
     "anchor": true

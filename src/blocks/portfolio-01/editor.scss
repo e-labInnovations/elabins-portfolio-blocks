@@ -1,3 +1,63 @@
 /*
 * Style Works for Editor Only
 */
+
+.wp-block-elabins-portfolio-blocks-portfolio-01 {
+  @apply mx-auto max-w-[1200px] p-6;
+
+  .portfolio-preview {
+    @apply rounded-lg bg-white p-6 shadow-lg;
+
+    .preview-header {
+      @apply mb-8 text-center;
+
+      h2 {
+        @apply mb-2 text-2xl font-bold text-gray-800;
+      }
+
+      p {
+        @apply text-lg text-gray-600;
+      }
+    }
+
+    .preview-stats {
+      @apply grid grid-cols-3 gap-4;
+
+      .stat-item {
+        @apply rounded-lg bg-gradient-to-br from-[#43cea2] to-[#185a9d] p-4 text-center text-white;
+
+        .stat-label {
+          @apply mb-1 block text-sm opacity-90;
+        }
+
+        .stat-value {
+          @apply text-xl font-bold;
+        }
+      }
+    }
+  }
+
+  .components-placeholder {
+    @apply flex min-h-[200px] flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-6;
+
+    .components-placeholder__label {
+      @apply mb-2 text-xl font-semibold text-gray-700;
+    }
+
+    .components-placeholder__instructions {
+      @apply mb-4 text-center text-gray-600;
+    }
+
+    .components-button {
+      @apply rounded bg-[#185a9d] px-4 py-2 text-white transition-colors hover:bg-[#43cea2];
+    }
+  }
+
+  .components-notice {
+    @apply rounded border-l-4 border-red-500 bg-red-50 p-4;
+
+    .components-notice__content {
+      @apply text-red-700;
+    }
+  }
+}

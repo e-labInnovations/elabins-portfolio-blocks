@@ -4,8 +4,16 @@ import metadata from "./block.json";
 import Edit from "./edit";
 import Save from "./save";
 
-const attributes = {};
-
+const attributes = {
+  portfolioJsonUrl: {
+    type: "string",
+    default: "",
+  },
+  githubStatsJsonUrl: {
+    type: "string",
+    default: "",
+  },
+};
 registerBlockType(metadata, {
   attributes,
   icon: {

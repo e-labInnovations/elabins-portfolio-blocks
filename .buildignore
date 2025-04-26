@@ -8,10 +8,12 @@ package-lock.json
 webpack.config.js
 tailwind.config.js
 .prettierrc.json
+*.zip
 
 # Build process files
 .buildignore
 build-plugin.sh
+temp-*/
 
 # Editor files
 .vscode/

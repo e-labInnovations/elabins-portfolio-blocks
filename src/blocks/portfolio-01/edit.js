@@ -20,6 +20,13 @@ export default function Edit({ attributes, setAttributes }) {
 
   const { portfolioJsonUrl = "", githubStatsJsonUrl = "" } = attributes;
 
+  const setSampleData = () => {
+    setAttributes({
+      portfolioJsonUrl: `${window.location.origin}/wp-content/plugins/elabins-portfolio-blocks/assets/sample-data/portfolio-data.json`,
+      githubStatsJsonUrl: `${window.location.origin}/wp-content/plugins/elabins-portfolio-blocks/assets/sample-data/github-stats.json`,
+    });
+  };
+
   const validateAndFetchJson = async () => {
     setLoading(true);
     setError(null);
@@ -48,6 +55,15 @@ export default function Edit({ attributes, setAttributes }) {
       if (!githubData.user || !githubData.langCommitCount) {
         throw new Error("Invalid GitHub stats structure");
       }
+
+      // Store profile data in attributes
+      setAttributes({
+        profileData: {
+          title: portfolioData.profile.title || "",
+          about: portfolioData.profile.about?.join(" ") || "",
+          name: portfolioData.profile.name || "",
+        },
+      });
 
       setPreviewData({ portfolio: portfolioData, github: githubData });
       setError(null);
@@ -88,15 +104,23 @@ export default function Edit({ attributes, setAttributes }) {
               "elabins-portfolio-blocks",
             )}
           />
-          <Button
-            isPrimary
-            onClick={validateAndFetchJson}
-            disabled={!portfolioJsonUrl || !githubStatsJsonUrl || loading}
+          <div
+            className="button-group"
+            style={{ display: "flex", gap: "10px", marginBottom: "10px" }}
           >
-            {loading
-              ? __("Validating...", "elabins-portfolio-blocks")
-              : __("Validate JSON", "elabins-portfolio-blocks")}
-          </Button>
+            <Button
+              isPrimary
+              onClick={validateAndFetchJson}
+              disabled={!portfolioJsonUrl || !githubStatsJsonUrl || loading}
+            >
+              {loading
+                ? __("Validating...", "elabins-portfolio-blocks")
+                : __("Validate JSON", "elabins-portfolio-blocks")}
+            </Button>
+            <Button isSecondary onClick={setSampleData} disabled={loading}>
+              {__("Use Sample Data", "elabins-portfolio-blocks")}
+            </Button>
+          </div>
         </PanelBody>
       </InspectorControls>
 
@@ -119,19 +143,27 @@ export default function Edit({ attributes, setAttributes }) {
               "elabins-portfolio-blocks",
             )}
           >
-            <Button
-              isPrimary
-              onClick={() => {
-                const sidebarPanel = document.querySelector(
-                  ".interface-complementary-area",
-                );
-                if (sidebarPanel) {
-                  sidebarPanel.style.display = "block";
-                }
-              }}
+            <div
+              className="button-group"
+              style={{ display: "flex", gap: "10px" }}
             >
-              {__("Open Settings", "elabins-portfolio-blocks")}
-            </Button>
+              <Button
+                isPrimary
+                onClick={() => {
+                  const sidebarPanel = document.querySelector(
+                    ".interface-complementary-area",
+                  );
+                  if (sidebarPanel) {
+                    sidebarPanel.style.display = "block";
+                  }
+                }}
+              >
+                {__("Open Settings", "elabins-portfolio-blocks")}
+              </Button>
+              <Button isSecondary onClick={setSampleData}>
+                {__("Use Sample Data", "elabins-portfolio-blocks")}
+              </Button>
+            </div>
           </Placeholder>
         ) : (
           <div className="portfolio-preview">

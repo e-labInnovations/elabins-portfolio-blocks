@@ -45,7 +45,13 @@
       "links": {
         "github": "https://github.com/rickc137/portal-gun"
       },
-      "media": {},
+      "media": {
+        "images": [
+          "https://static.wikia.nocookie.net/rickandmorty/images/5/55/Portal_gun.png/revision/latest",
+          "https://static.wikia.nocookie.net/rickandmorty/images/5/57/Portalgunny.png/revision/latest"
+        ],
+        "videos": ["https://www.youtube.com/watch?v=89R_MEBqH5E&ab_channel=E4"]
+      },
       "collaborators": [],
       "startDate": "1960-01-01",
       "endDate": null,
@@ -62,11 +68,15 @@
       "links": {
         "github": "https://github.com/rickc137/microverse-battery"
       },
-      "media": {},
+      "media": {
+        "images": [
+          "https://static.wikia.nocookie.net/rickandmorty/images/2/25/S2e6_Microverse_Battery.png/revision/latest/scale-to-width-down/1000"
+        ]
+      },
       "collaborators": [
         {
           "name": "Zeep Xanflorp",
-          "link": "#"
+          "link": "https://rickandmorty.fandom.com/wiki/Zeep_Xanflorp"
         }
       ],
       "startDate": "2017-01-01",
@@ -84,7 +94,12 @@
       "links": {
         "github": "https://github.com/rickc137/meeseeks-box"
       },
-      "media": {},
+      "media": {
+        "images": [
+          "https://static.wikia.nocookie.net/rickandmorty/images/4/4e/MeeseeksBox.png/revision/latest"
+        ],
+        "videos": ["https://www.youtube.com/watch?v=l5wvqKcqL7c"]
+      },
       "collaborators": [],
       "startDate": "2013-01-01",
       "endDate": "2013-12-31",
@@ -101,7 +116,11 @@
       "links": {
         "github": "https://github.com/rickc137/pickle-transformation"
       },
-      "media": {},
+      "media": {
+        "images": [
+          "https://static.wikia.nocookie.net/rickandmorty/images/c/c5/S3e3_pickle_riiick.png/revision/latest"
+        ]
+      },
       "collaborators": [],
       "startDate": "2017-08-01",
       "endDate": "2017-08-01",

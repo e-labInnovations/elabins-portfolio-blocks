@@ -13,7 +13,16 @@ const attributes = {
     type: "string",
     default: "",
   },
+  profileData: {
+    type: "object",
+    default: {
+      title: "",
+      about: "",
+      name: "",
+    },
+  },
 };
+
 registerBlockType(metadata, {
   attributes,
   icon: {

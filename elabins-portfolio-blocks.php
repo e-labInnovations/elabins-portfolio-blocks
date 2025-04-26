@@ -23,6 +23,9 @@ define('ELABINS_PORTFOLIO_BLOCKS_PATH', plugin_dir_path(__FILE__));
 define('ELABINS_PORTFOLIO_BLOCKS_URL', plugin_dir_url(__FILE__));
 define("DOMAIN", "elabins-portfolio-blocks");
 
+// Include SEO functionality
+// require_once plugin_dir_path(__FILE__) . 'includes/seo.php';
+
 // Enqueue scripts
 function elabins_portfolio_blocks_enqueue_script($name) {
   $manifest = require ELABINS_PORTFOLIO_BLOCKS_PATH . '/build/scripts/' . $name . '/index.asset.php';
@@ -36,13 +39,15 @@ function elabins_portfolio_blocks_enqueue_script($name) {
 
 function elabins_portfolio_blocks_load_assets() {
   elabins_portfolio_blocks_enqueue_script("main");
-  wp_enqueue_style(
-    DOMAIN . "-main",
-    ELABINS_PORTFOLIO_BLOCKS_URL . "/build/index.css",
-    [],
-    "1.0",
-    "all"
-  );
+
+  // This is the main css file introducing header position bug with ashad theme
+  // wp_enqueue_style(
+  //   DOMAIN . "-main",
+  //   ELABINS_PORTFOLIO_BLOCKS_URL . "/build/index.css",
+  //   [],
+  //   "1.0",
+  //   "all"
+  // );
 
   wp_enqueue_style(
     "font-awesome",

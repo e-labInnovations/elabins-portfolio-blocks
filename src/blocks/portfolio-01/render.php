@@ -6,7 +6,7 @@
 // $githubStats = wp_remote_get('http://localhost:8881/wp-content/plugins/elabins-portfolio-blocks/assets/sample-data/github-stats.json');
 
 if (!isset($attributes['portfolioJsonUrl']) || !isset($attributes['githubStatsJsonUrl'])) {
-  echo '<div class="elabins-portfolio-error">Please configure the portfolio and GitHub stats URLs in the block settings.</div>';
+  echo '<div class="elabins-portfolio-error"><i class="fas fa-exclamation-triangle"></i> Please configure the portfolio and GitHub stats URLs in the block settings.</div>';
   return;
 }
 
@@ -17,7 +17,7 @@ $profile = wp_remote_get($portfolioJsonUrl);
 $githubStats = wp_remote_get($githubStatsJsonUrl);
 
 if (is_wp_error($profile) || is_wp_error($githubStats)) {
-  echo '<div class="error">Failed to load portfolio data. Please verify the URLs and try again.</div>';
+  echo '<div class="elabins-portfolio-error"><i class="fas fa-exclamation-triangle"></i> Failed to load portfolio data. Please verify the URLs and try again.</div>';
   return;
 }
 
@@ -25,7 +25,7 @@ $profileData = json_decode(wp_remote_retrieve_body($profile), true);
 $githubStatsData = json_decode(wp_remote_retrieve_body($githubStats), true);
 
 if (!$profileData || !$githubStatsData) {
-  echo '<div class="error">Invalid JSON data. Please check the data format.</div>';
+  echo '<div class="elabins-portfolio-error"><i class="fas fa-exclamation-triangle"></i> Invalid JSON data. Please check the data format.</div>';
   return;
 }
 ?>
@@ -76,7 +76,7 @@ if (!$profileData || !$githubStatsData) {
       <h2>Quick Facts</h2>
       <ul>
         <?php foreach ($profileData['profile']['facts'] as $fact) : ?>
-          <li><i class="fas <?php echo $fact['icon']; ?>"></i> <?php echo $fact['content']; ?></li>
+          <li><i class="<?php echo $fact['icon']; ?>"></i> <?php echo $fact['content']; ?></li>
         <?php endforeach; ?>
       </ul>
     </div>
@@ -155,10 +155,11 @@ if (!$profileData || !$githubStatsData) {
   </div>
 
   <!-- Projects Section -->
-  <div class="projects-section" data-aos="fade-up">
+  <div class="projects-section" data-aos="fade-up"
+    data-projects='<?php echo htmlspecialchars(json_encode($profileData['projects']), ENT_QUOTES, 'UTF-8'); ?>'>
     <h2>Projects</h2>
     <div class="projects-grid">
-      <?php foreach ($profileData['projects'] as $project) : ?>
+      <?php foreach ($profileData['projects'] as $projectIndex => $project) : ?>
         <div class="project-card" data-aos="fade-up">
           <div class="project-header">
             <div class="header-content">
@@ -177,8 +178,15 @@ if (!$profileData || !$githubStatsData) {
                   data-tooltip="View on GitHub">
                   <i class="fab fa-github"></i>
                 </a>
-              <?php else: ?>
-                <span class="project-link private-link" data-tooltip="Private/Closed Source Project">
+              <?php endif; ?>
+              <?php if (!empty($project['links']['website'])): ?>
+                <a href="<?php echo $project['links']['website']; ?>" target="_blank" class="project-link"
+                  data-tooltip="Visit Website">
+                  <i class="fas fa-globe"></i>
+                </a>
+              <?php endif; ?>
+              <?php if (empty($project['links'])): ?>
+                <span class="project-link private-link" data-tooltip="Private Project">
                   <i class="fas fa-lock"></i>
                 </span>
               <?php endif; ?>
@@ -186,38 +194,119 @@ if (!$profileData || !$githubStatsData) {
           </div>
 
           <div class="project-content">
-            <p class="description"><?php echo $project['description']; ?></p>
-
-            <?php if (!empty($project['collaborators'])): ?>
-              <div class="collaborators">
-                <h4>Collaborators</h4>
-                <div class="collaborators-list">
-                  <?php foreach ($project['collaborators'] as $collaborator): ?>
-                    <div class="collaborator">
-                      <?php if (!empty($collaborator['link'])): ?>
-                        <a href="<?php echo $collaborator['link']; ?>" target="_blank" class="collaborator-name">
-                          <?php echo $collaborator['name']; ?>
-                          <i class="fas fa-external-link-alt"></i>
-                        </a>
-                      <?php else: ?>
-                        <span class="collaborator-name"><?php echo $collaborator['name']; ?></span>
-                      <?php endif; ?>
-                    </div>
-                  <?php endforeach; ?>
-                </div>
-              </div>
-            <?php endif; ?>
+            <p class="description">
+              <?php
+              $truncated_description = strlen($project['description']) > 150 ?
+                substr($project['description'], 0, 150) . '...' :
+                $project['description'];
+              echo $truncated_description;
+              ?>
+            </p>
 
             <div class="skills-list">
-              <?php foreach ($project['skills'] as $skill): ?>
+              <?php
+              $displaySkills = array_slice($project['skills'], 0, 3);
+              foreach ($displaySkills as $skill):
+              ?>
                 <span class="skill-tag" data-tooltip="<?php echo $skill; ?>">
                   <?php echo $skill; ?>
                 </span>
               <?php endforeach; ?>
+              <?php if (count($project['skills']) > 3): ?>
+                <span class="skill-tag more-skills" data-tooltip="Click to view all technologies">
+                  +<?php echo count($project['skills']) - 3; ?> more
+                </span>
+              <?php endif; ?>
             </div>
+
+            <button class="view-details-btn" data-project-index="<?php echo $projectIndex; ?>">
+              View Details <i class="fas fa-external-link-alt"></i>
+            </button>
           </div>
         </div>
       <?php endforeach; ?>
+    </div>
+  </div>
+
+  <!-- Project Modal -->
+  <div class="project-modal" id="projectModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title"></h2>
+          <div class="modal-meta">
+            <div class="modal-duration">
+              <i class="fas fa-calendar-alt"></i>
+              <span></span>
+            </div>
+            <div class="modal-links">
+              <!-- Project links will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-description">
+          <!-- Description will be populated by JavaScript -->
+        </div>
+
+        <div class="modal-collaborators">
+          <h3><i class="fas fa-users"></i> Collaborators</h3>
+          <div class="collaborators-list">
+            <!-- Collaborators will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="modal-skills">
+          <h3><i class="fas fa-code"></i> Technologies Used</h3>
+          <div class="skills-list">
+            <!-- Skills will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="modal-media">
+          <div class="media-tabs">
+            <button class="tab-btn active" data-tab="screenshots">
+              <i class="fas fa-images"></i> Screenshots
+            </button>
+            <button class="tab-btn" data-tab="videos">
+              <i class="fas fa-video"></i> Videos
+            </button>
+          </div>
+          <div class="media-content">
+            <div class="tab-content screenshots active">
+              <div class="media-grid">
+                <!-- Screenshots will be populated by JavaScript -->
+              </div>
+            </div>
+            <div class="tab-content videos">
+              <div class="media-grid">
+                <!-- Videos will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media Preview Modal -->
+  <div class="media-preview-modal" id="mediaPreviewModal">
+    <div class="preview-overlay"></div>
+    <div class="preview-container">
+      <button class="preview-close"><i class="fas fa-times"></i></button>
+      <div class="preview-content">
+        <!-- Media preview content will be populated by JavaScript -->
+      </div>
+      <div class="preview-actions">
+        <a href="#" class="preview-download" download>
+          <i class="fas fa-download"></i> Download
+        </a>
+        <a href="#" class="preview-open-link" target="_blank">
+          <i class="fas fa-external-link-alt"></i> Open in New Tab
+        </a>
+      </div>
     </div>
   </div>
 

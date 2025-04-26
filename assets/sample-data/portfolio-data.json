@@ -1,492 +1,217 @@
 {
   "profile": {
-    "name": "Mohammed Ashad MM",
-    "title": "An Electronics Engineer With A Keyboard",
-    "profile_image": "https://elabins.com/wp-content/uploads/2025/04/cropped.png",
+    "name": "Rick Sanchez",
+    "title": "Interdimensional Scientist & Inventor",
+    "profile_image": "https://i.pinimg.com/736x/dc/a0/32/dca0324f76eb1daefae5a2b5f7256f83.jpg",
     "about": [
-      "Hey there 👋 I'm Ashad — an engineer with a passion for building the future one line of code and circuit at a time. I specialize in electronics, embedded systems, and full-stack development, currently working as a MTS 2 at <a href=\"https://www.thoughtspot.com/\" target=\"_blank\" class=\"text-primary font-semibold hover:underline\">ThoughtSpot</a>. I've built everything from smart IoT devices to full-stack projects, and I'm on a mission to blend the physical and digital worlds creatively and efficiently.",
-      "I'm also the mind behind <a href=\"https://elabins.com\" target=\"_blank\" class=\"text-primary font-semibold hover:underline\">e-lab innovations</a>, a platform where innovation meets practical electronics. Whether it's a smart egg incubator or a Telegram-controlled ESP32 project, I love making tech that just works — and works well."
+      "Wubba lubba dub dub! 🧪 I'm Rick — the smartest being in the infinite universes. With an IQ that makes Einstein look like a Jerry, I specialize in interdimensional travel, quantum physics, and turning myself into various objects (proudly invented the pickle transformation). Currently avoiding the Galactic Federation while conducting groundbreaking research in my garage laboratory.",
+      "I'm also the inventor of the iconic Portal Gun and countless other revolutionary devices that the bureaucrats at the Citadel are too narrow-minded to appreciate. Whether it's creating a microverse battery or casually solving the problems of interstellar travel, I'm all about pushing the boundaries of science, *burp* usually with a flask in hand."
     ],
     "facts": [
       {
-        "icon": "fa-graduation-cap",
-        "content": "Electronics Engineer"
+        "icon": "fas fa-brain",
+        "content": "Smartest Being in the Multiverse"
       },
       {
-        "icon": "fa-laptop-code",
-        "content": "MTS 2 at <a href=\"https://www.thoughtspot.com/\" target=\"_blank\" class=\"text-primary font-semibold hover:underline\">ThoughtSpot</a>"
+        "icon": "fas fa-flask",
+        "content": "Mad Scientist at <a href=\"#\" target=\"_blank\">Smith Family Garage Lab</a>"
       },
       {
-        "icon": "fa-microchip",
-        "content": "Embedded Systems Developer"
+        "icon": "fas fa-door-open",
+        "content": "Interdimensional Travel Expert"
       },
       {
-        "icon": "fa-wifi",
-        "content": "IoT Enthusiast"
+        "icon": "fas fa-atom",
+        "content": "Quantum Physics Master"
       },
       {
-        "icon": "fa-code",
-        "content": "Full-Stack Developer"
+        "icon": "fas fa-robot",
+        "content": "AI & Robotics Pioneer"
       },
       {
-        "icon": "fa-tools",
-        "content": "Automation Specialist"
+        "icon": "fas fa-wine-bottle",
+        "content": "Professional Alcoholic"
       },
       {
-        "icon": "fa-lightbulb",
-        "content": "Founder of <a href=\"https://elabins.com\" target=\"_blank\" class=\"text-primary font-semibold hover:underline\">e-lab innovations</a>"
+        "icon": "fas fa-users",
+        "content": "Founder of <a href=\"#\" target=\"_blank\">The Council of Ricks</a> (Former)"
       }
     ]
   },
   "projects": [
     {
-      "name": "Auto Billing Trolley",
-      "description": "I designed an IoT-based self-billing trolley project using RFID technology. The hardware includes an ESP8266 microcontroller, EM-18 RFID reader, and OLED display. A Node.js server communicates with the hardware through WebSocket protocol, streamlining the billing process. Customers can scan product RFID tags to add items to the trolley. The server stores product details and displays the product list and total amount on a WPA app. An OLED display on the trolley shows the total amount and product count. To remove items, users press a button, and the OLED prompts a \"remove\" action. The system updates the cart accordingly. This automated trolley enhances the shopping experience by simplifying billing, reducing manual effort, and providing real-time information.",
+      "name": "Portal Gun",
+      "description": "Invented the revolutionary Portal Gun, enabling instantaneous travel between infinite dimensions. This handheld device creates interdimensional portals by manipulating quantum fields and spacetime fabric. Features include customizable dimensional coordinates, portal stability maintenance, and a built-in flask holder (essential feature).",
       "links": {
-        "github": ""
+        "github": "https://github.com/rickc137/portal-gun"
       },
       "media": {},
       "collaborators": [],
-      "startDate": "2023-01-01",
-      "endDate": "2023-05-01",
-      "skills": ["ESP8266", "RFID", "Node.js", "WebSocket", "IoT"]
+      "startDate": "1960-01-01",
+      "endDate": null,
+      "skills": [
+        "Quantum Physics",
+        "Interdimensional Travel",
+        "Portal Technology",
+        "Advanced Engineering"
+      ]
     },
     {
-      "name": "Day Counter",
-      "description": "I developed \"Day Counter,\" a Chrome extension to count days and show the count on the extension icon. It includes a \"Quit Addiction\" feature with different avatar images based on the level. This user-friendly tool helps track daily progress and stay motivated. The \"Quit Addiction\" feature serves as a visual reward system, encouraging consistency. \"Day Counter\" aims to enhance productivity, habit-building, and personal development.",
+      "name": "Microverse Battery",
+      "description": "Developed a miniature universe to power my car's battery. Created a society that generates power through kinetic energy, essentially turning civilization into a power source. Note: Any ethical concerns are purely coincidental and irrelevant to the scientific achievement.",
       "links": {
-        "github": ""
+        "github": "https://github.com/rickc137/microverse-battery"
+      },
+      "media": {},
+      "collaborators": [
+        {
+          "name": "Zeep Xanflorp",
+          "link": "#"
+        }
+      ],
+      "startDate": "2017-01-01",
+      "endDate": "2017-01-01",
+      "skills": [
+        "Miniaturization",
+        "Civilization Engineering",
+        "Energy Generation",
+        "Manipulation"
+      ]
+    },
+    {
+      "name": "Meeseeks Box",
+      "description": "Engineered a box that spawns helpful beings called Mr. Meeseeks, designed to solve a single task before ceasing to exist. Warning: Don't give them complex or impossible tasks, unless you enjoy existential chaos.",
+      "links": {
+        "github": "https://github.com/rickc137/meeseeks-box"
       },
       "media": {},
       "collaborators": [],
-      "startDate": "2022-10-01",
-      "endDate": "2022-12-01",
-      "skills": ["Chrome Extension", "JavaScript", "HTML", "CSS"]
+      "startDate": "2013-01-01",
+      "endDate": "2013-12-31",
+      "skills": [
+        "AI",
+        "Matter Generation",
+        "Task Automation",
+        "Existential Engineering"
+      ]
     },
     {
-      "name": "Statera",
-      "description": "Statera is an IoT Based balance rehabilitation system for who facing balance issue due to age, stock and Parkinson.",
+      "name": "Pickle Rick Serum",
+      "description": "Successfully developed a serum capable of transforming human consciousness into a pickle. This groundbreaking achievement in biological transformation technology was definitely not just to avoid family therapy.",
       "links": {
-        "github": ""
+        "github": "https://github.com/rickc137/pickle-transformation"
       },
       "media": {},
       "collaborators": [],
-      "startDate": "2023-10-01",
-      "endDate": "2024-06-01",
-      "skills": ["IoT", "Healthcare", "Embedded Systems"]
-    },
-    {
-      "name": "Elabins Days Counter (Rainmeter)",
-      "description": "\"Elabins Days Counter\" is a Rainmeter skin that allows you to count days up from a specified starting date. Inspired by the \"Days without incident\" concept from the Hulk 2008 movie, this day counter provides a fun and unique way to track time and important milestones.",
-      "links": {
-        "github": ""
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2023-07-01",
-      "endDate": "2023-07-01",
-      "skills": ["Rainmeter", "Lua", "Windows"]
-    },
-    {
-      "name": "CampusCast",
-      "description": "CampusCast is an IoT-based announcement system designed to improve communication in academic institutions. Teachers can send voice announcements with customizable routes to specific classrooms or branches, ensuring messages are received and acknowledged. Smart Notifications and Exam Time Alerts provide targeted communication without disrupting classes. CampusCast aims to modernize communication in colleges, enhancing the campus experience and fostering student engagement. It aims to improve academic success by facilitating efficient and connected learning through improved communication between faculty and students.",
-      "links": {
-        "github": ""
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2023-03-01",
-      "endDate": "2023-06-01",
-      "skills": ["IoT", "Node.js", "WebSocket", "Voice Processing"]
-    },
-    {
-      "name": "DriveSnap",
-      "description": "Introducing \"DriveSnap - ESP32-Cam Timelapse Project,\" a dynamic solution that captures captivating timelapse sequences with precision. DriveSnap, powered by ESP32-Cam, expertly takes one photo every minute, seamlessly uploading each snapshot to your designated Google Drive folder. Immerse yourself in the beauty of your projects, workbench activities, or cherished moments, all immortalized in stunning timelapse footage.",
-      "links": {
-        "github": ""
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2022-12-01",
-      "endDate": "2022-12-01",
-      "skills": ["ESP32", "Google Drive API", "Timelapse", "IoT"]
-    },
-    {
-      "name": "tkmcebot",
-      "description": "Study materials bot for Telegram",
-      "links": {
-        "github": "https://github.com/e-labInnovations/tkmcebot"
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2022-02-01",
-      "endDate": "2022-02-01",
-      "skills": ["Telegram Bot", "Node.js", "MongoDB"]
-    },
-    {
-      "name": "Ashad",
-      "description": "Ashad is an elegant and versatile WordPress theme crafted exclusively for the creative minds at e-lab Innovations. This theme embodies the essence of electronics and programming, providing a captivating platform to showcase cutting-edge project ideas, experiment results, and insightful insights.",
-      "links": {
-        "github": "https://github.com/e-labInnovations/ashad"
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2022-01-01",
-      "endDate": "2022-09-01",
-      "skills": ["WordPress", "PHP", "HTML", "CSS", "JavaScript"]
-    },
-    {
-      "name": "Walleto",
-      "description": "Walloto is a versatile Progressive Web App (PWA) and a native Android app available on the Play Store. Seamlessly manage your wallet with this intuitive and feature-rich application. Walloto empowers you to effortlessly record and categorize your daily income and expenses, providing you with valuable insights into your financial habits. As a PWA, Walloto ensures a responsive and immersive user experience on any device, while the TWA version enhances the convenience of accessing the app directly from the Play Store.",
-      "links": {
-        "github": "https://github.com/e-labInnovations/Walleto"
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2021-10-01",
-      "endDate": "2021-10-01",
-      "skills": ["PWA", "Android", "React", "Firebase"]
-    },
-    {
-      "name": "Poly-Drive",
-      "description": "Nodejs based website to provide study materials from google drive.",
-      "links": {
-        "github": "https://github.com/e-labInnovations/Poly-Drive"
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2021-05-01",
-      "endDate": "2021-05-01",
-      "skills": ["Node.js", "Google Drive API", "Express"]
-    },
-    {
-      "name": "SCNotifier",
-      "description": "Smart classroom notifier aka SCNotfier is my main project in the 3rd year of my diploma education. It is basically an IoT device that helps students to notify several messages and notifications from different sources and alert them using a VGA projector or Monitor present in the classroom.",
-      "links": {
-        "github": "https://github.com/e-labInnovations/SCNotifier"
-      },
-      "media": {},
-      "collaborators": [],
-      "startDate": "2021-01-01",
-      "endDate": "2021-07-01",
-      "skills": ["IoT", "ESP8266", "Node.js", "WebSocket"]
-    },
-    {
-      "name": "ESP12 Based Home Automation",
-      "description": "This is an ESP12 based home automation project. The project uses a web interface to control the loads. With help of WiFi, we can control the relays to turn on or off.",
-      "links": {
-        "github": "https://github.com/e-labInnovations/ESP12-Home-Automation"
-      },
-      "media": {
-        "screenshots": [
-          "https://elabins.com/wp-content/uploads/2022/02/PCB_06-scaled.jpeg",
-          "https://elabins.com/wp-content/uploads/2022/02/PCB_05-scaled.jpeg"
-        ],
-        "videos": ["https://youtu.be/MXmbIR_0Whk?si=egxDjpSiYAzqXu6S"]
-      },
-      "collaborators": [],
-      "startDate": "2020-07-01",
-      "endDate": "2020-07-01",
-      "skills": ["ESP8266", "Home Automation", "IoT", "Web Interface"]
+      "startDate": "2017-08-01",
+      "endDate": "2017-08-01",
+      "skills": [
+        "Biological Engineering",
+        "Consciousness Transfer",
+        "Pickle Science"
+      ]
     }
   ],
   "techStack": [
     {
-      "name": "C",
-      "link": "https://www.cprogramming.com/",
-      "image": "https://skillicons.dev/icons?i=c"
+      "name": "Quantum Physics",
+      "link": "#",
+      "image": "https://i.postimg.cc/dtrvbkSz/Gemini-Generated-Image-bathi0bathi0bath.jpg"
     },
     {
-      "name": "Arduino",
-      "link": "https://www.arduino.cc/",
-      "image": "https://skillicons.dev/icons?i=arduino"
+      "name": "Portal Technology",
+      "link": "#",
+      "image": "https://i.postimg.cc/bNj4263B/Gemini-Generated-Image-4ongfe4ongfe4ong.jpg"
     },
     {
-      "name": "Visual Studio Code",
-      "link": "https://code.visualstudio.com/",
-      "image": "https://skillicons.dev/icons?i=vscode"
+      "name": "Genetic Engineering",
+      "link": "#",
+      "image": "https://i.postimg.cc/rmXNYH06/Gemini-Generated-Image-hsjmjfhsjmjfhsjm.jpg"
     },
     {
-      "name": "HTML5",
-      "link": "",
-      "image": "https://skillicons.dev/icons?i=html"
+      "name": "AI Development",
+      "link": "#",
+      "image": "https://i.postimg.cc/43bYs22R/Gemini-Generated-Image-90o1qh90o1qh90o1.jpg"
     },
     {
-      "name": "CSS3",
-      "link": "https://www.w3.org/TR/CSS/#css",
-      "image": "https://skillicons.dev/icons?i=css"
-    },
-    {
-      "name": "JavaScript",
-      "link": "https://www.javascript.com/",
-      "image": "https://skillicons.dev/icons?i=js"
-    },
-    {
-      "name": "PHP",
-      "link": "https://www.php.net/",
-      "image": "https://skillicons.dev/icons?i=php"
-    },
-    {
-      "name": "Node.js",
-      "link": "https://nodejs.org/en/",
-      "image": "https://skillicons.dev/icons?i=nodejs"
-    },
-    {
-      "name": "NPM",
-      "link": "https://www.npmjs.com/",
-      "image": "https://raw.githubusercontent.com/tandpfun/skill-icons/75fca9268d3f686637469ec810d20ebca5925db9/icons/Npm.svg"
-    },
-    {
-      "name": "React",
-      "link": "https://reactjs.org/",
-      "image": "https://skillicons.dev/icons?i=react"
-    },
-    {
-      "name": "Vite",
-      "link": "https://vite.dev/",
-      "image": "https://skillicons.dev/icons?i=vite"
-    },
-    {
-      "name": "Ionic",
-      "link": "https://ionicframework.com/",
-      "image": "https://raw.githubusercontent.com/e-labInnovations/skill-icons/main/icons/Ionic-Dark.svg"
-    },
-    {
-      "name": "Express",
-      "link": "https://expressjs.com/",
-      "image": "https://skillicons.dev/icons?i=express"
-    },
-    {
-      "name": "Nest.js",
-      "link": "https://nestjs.com/",
-      "image": "https://skillicons.dev/icons?i=nestjs"
-    },
-    {
-      "name": "WordPress",
-      "link": "https://wordpress.org/",
-      "image": "https://skillicons.dev/icons?i=wordpress"
-    },
-    {
-      "name": "Git",
-      "link": "https://git-scm.com/",
-      "image": "https://skillicons.dev/icons?i=git"
-    },
-    {
-      "name": "GitHub",
-      "link": "https://github.com/",
-      "image": "https://skillicons.dev/icons?i=github"
-    },
-    {
-      "name": "Firebase",
-      "link": "https://firebase.google.com/",
-      "image": "https://skillicons.dev/icons?i=firebase"
-    },
-    {
-      "name": "Jekyll",
-      "link": "https://jekyllrb.com/",
-      "image": "https://raw.githubusercontent.com/e-labInnovations/skill-icons/main/icons/Jekyll-Dark.svg"
-    },
-    {
-      "name": "JSON",
-      "link": "https://www.json.org/json-en.html",
-      "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/json/json.png"
-    },
-    {
-      "name": "Markdown",
-      "link": "https://www.markdownguide.org/",
-      "image": "https://skillicons.dev/icons?i=md"
-    },
-    {
-      "name": "PWA",
-      "link": "https://web.dev/progressive-web-apps/",
-      "image": "https://raw.githubusercontent.com/e-labInnovations/skill-icons/main/icons/PWA-Dark.svg"
-    },
-    {
-      "name": "Tailwind",
-      "link": "https://tailwindcss.com/docs/responsive-design",
-      "image": "https://skillicons.dev/icons?i=tailwind"
-    },
-    {
-      "name": "Bootstrap",
-      "link": "https://getbootstrap.com/",
-      "image": "https://skillicons.dev/icons?i=bootstrap"
-    },
-    {
-      "name": "Bulma",
-      "link": "",
-      "image": "https://raw.githubusercontent.com/tandpfun/skill-icons/e780ea3a7980289805e8afe2d027b124d96d48bd/icons/Bulma-Dark.svg"
-    },
-    {
-      "name": "Materialize",
-      "link": "https://materializecss.com/",
-      "image": "https://raw.githubusercontent.com/tandpfun/skill-icons/e780ea3a7980289805e8afe2d027b124d96d48bd/icons/Materialize-Dark.svg"
-    },
-    {
-      "name": "Heroku",
-      "link": "https://heroku.com/",
-      "image": "https://skillicons.dev/icons?i=heroku"
-    },
-    {
-      "name": "Netlify",
-      "link": "https://www.netlify.com/",
-      "image": "https://skillicons.dev/icons?i=netlify"
-    },
-    {
-      "name": "Putty",
-      "link": "https://www.putty.org/",
-      "image": "https://raw.githubusercontent.com/e-labInnovations/skill-icons/main/icons/Putty-Dark.svg"
-    },
-    {
-      "name": "Socket.io",
-      "link": "https://socket.io/",
-      "image": "https://raw.githubusercontent.com/e-labInnovations/skill-icons/main/icons/SocketIO-Dark.svg"
-    },
-    {
-      "name": "Pug",
-      "link": "https://pugjs.org/api/getting-started.html",
-      "image": "https://skillicons.dev/icons?i=pug"
-    },
-    {
-      "name": "Google Apps Script",
-      "link": "https://www.google.com/script/start/",
-      "image": "https://raw.githubusercontent.com/e-labInnovations/skill-icons/main/icons/GoogleAppsScript-Dark.svg"
-    },
-    {
-      "name": "Postman",
-      "link": "https://www.postman.com/",
-      "image": "https://skillicons.dev/icons?i=postman"
-    },
-    {
-      "name": "Adobe Illustrator",
-      "link": "https://www.adobe.com/in/products/illustrator.html",
-      "image": "https://skillicons.dev/icons?i=ai"
-    },
-    {
-      "name": "Node-RED",
-      "link": "https://nodered.org/",
-      "image": "https://raw.githubusercontent.com/e-labInnovations/skill-icons/main/icons/NodeRED.svg"
-    },
-    {
-      "name": "Playwright",
-      "link": "https://playwright.dev/",
-      "image": "https://raw.githubusercontent.com/osohyun0224/skill-icons/refs/heads/main/icons/PlayWright-Dark.svg"
+      "name": "Time Travel",
+      "link": "#",
+      "image": "https://i.postimg.cc/RFh4ygjR/Gemini-Generated-Image-q2zeidq2zeidq2ze.jpg"
     }
   ],
   "education": [
     {
-      "college": "TKM College of Engineering, Kollam",
-      "degree": "Bachelor of Technology",
-      "fieldOfStudy": "Electronics Engineering",
-      "university": "APJ Abdul Kalam Technological University",
-      "startDate": "2021-12-01",
-      "endDate": "2024-06-01",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/8/87/Thangal_Kunju_Musaliar_College_of_Engineering_logo.png"
-    },
-    {
-      "college": "AKNM GPTC Thirurangadi, Chelari",
-      "degree": "Diploma of Education",
-      "fieldOfStudy": "Electronics Engineering",
-      "university": "State Board of Technical Education, Kerala",
-      "startDate": "2018-08-01",
-      "endDate": "2021-09-01",
-      "logo": "https://gptcthirurangadi.in/sites/default/files/logo_2.png"
+      "college": "Interdimensional Academy of Mad Science",
+      "degree": "PhD",
+      "fieldOfStudy": "Everything",
+      "university": "Dimension C-137",
+      "startDate": "1940-01-01",
+      "endDate": "1950-01-01",
+      "logo": "https://i.postimg.cc/025bZRxJ/Chat-GPT-Image-Apr-26-2025-10-17-13-AM.png"
     }
   ],
   "experience": [
     {
-      "title": "Member of Technical Staff 2",
-      "employmentType": "Full-time",
+      "title": "Lead Scientist",
+      "employmentType": "Self-Employed",
       "company": {
-        "name": "ThoughtSpot",
-        "link": "https://www.thoughtspot.com/",
-        "logo": "https://cdn.prod.website-files.com/634a245ea4220255c5cb9dcc/634d67d12c10615d10192988_ThoughtSpot.png"
+        "name": "Smith Family Garage Lab",
+        "link": "#",
+        "logo": "https://i.postimg.cc/gJBvdzGQ/Chat-GPT-Image-Apr-26-2025-10-31-27-AM.png"
       },
-      "startDate": "2024-08-01",
+      "startDate": "2013-01-01",
       "endDate": null,
-      "location": "Bangalore, India",
-      "locationType": "hybrid",
-      "description": ""
+      "location": "Earth (Dimension C-137)",
+      "locationType": "on-site",
+      "description": "Running unauthorized experiments, creating interdimensional portals, and occasionally saving/destroying the universe."
     },
     {
-      "title": "Engineering Intern",
-      "employmentType": "Internship",
+      "title": "Council Member",
+      "employmentType": "Part-time",
       "company": {
-        "name": "ThoughtSpot",
-        "link": "https://www.thoughtspot.com/",
-        "logo": "https://cdn.prod.website-files.com/634a245ea4220255c5cb9dcc/634d67d12c10615d10192988_ThoughtSpot.png"
+        "name": "Council of Ricks",
+        "link": "#",
+        "logo": "https://i.postimg.cc/SNNRfKvC/Gemini-Generated-Image-yworc5yworc5ywor.jpg"
       },
-      "startDate": "2024-01-01",
-      "endDate": "2024-07-01",
-      "location": "Bangalore, India",
-      "locationType": "hybrid",
-      "description": ""
-    },
-    {
-      "title": "Embedded Systems Developer",
-      "employmentType": "Freelance",
-      "company": {
-        "name": "e-lab innovations",
-        "link": "https://elabins.com/",
-        "logo": "https://elabins.com/wp-content/uploads/2021/12/logo-120x120-compressed.png"
-      },
-      "startDate": "2018-01-01",
-      "endDate": "2024-01-01",
-      "location": "Remote",
-      "locationType": "remote",
-      "description": ""
+      "startDate": "2014-01-01",
+      "endDate": "2017-01-01",
+      "location": "The Citadel",
+      "locationType": "interdimensional",
+      "description": "Former member of the Council of Ricks before realizing they were just bureaucrats with extra steps."
     }
   ],
   "honorsAndAwards": [
     {
-      "title": "Latency Hackathon",
-      "issuer": "TinkerHub TKMCE",
-      "issueDate": "2022-06-01",
-      "description": "Won 2nd place in Latency Hackathon. Latency aims at providing a platform for technical enthusiastic students to hone their problem-solving abilities. The event tries to underline and emphasize the importance of cultivating skills that would help students come up with creative solutions to tackle real-world problems.",
-      "link": "https://tinkerhub.org/latency",
-      "image": "https://latency2.devfolio.co/_next/image?url=https%3A%2F%2Fassets.devfolio.co%2Fhackathons%2Fd77a3d55f4094c5b8dd8062129f5262b%2Fassets%2Fcover%2F288.png&w=1440&q=100"
+      "title": "Interdimensional Scientist of the Millennium",
+      "issuer": "Interdimensional Scientific Community",
+      "issueDate": "2020-01-01",
+      "description": "Awarded for groundbreaking contributions to interdimensional travel and being the smartest being in the multiverse. *burp* Whatever.",
+      "link": "#",
+      "image": "https://i.postimg.cc/VvmCPQWt/Gemini-Generated-Image-2eitrz2eitrz2eit.jpg"
     },
     {
-      "title": "Championing Innovation: Winning Team of YIP 2020",
-      "issuer": "KDISC",
-      "issueDate": "2021-12-01",
-      "description": "Celebrating Collective Innovation 🏆🌱: Delighted to share that our team's idea 'PID BASED AUTOMATIC EGG INCUBATOR' (Idea ID: 164) triumphed in the micro theme Incubator at the State Level Evaluation of the Young Innovators Programme (YIP) 2020. Our collaborative effort under Agriculture & Allied Sectors received recognition. A proud moment of teamwork and innovation! 🚀🌾"
+      "title": "Most Wanted Terrorist",
+      "issuer": "Galactic Federation",
+      "issueDate": "2015-01-01",
+      "description": "Recognized for successfully bringing down the Galactic Federation's economy by changing the value of their currency from 1 to 0. Not bad for a day's work.",
+      "link": "#"
     }
   ],
   "socialLinks": [
     {
       "title": "GitHub",
-      "link": "https://github.com/e-labinnovations",
-      "username": "e-labinnovations"
+      "link": "https://github.com/rickc137",
+      "username": "rickc137"
     },
     {
-      "title": "LinkedIn",
-      "link": "https://www.linkedin.com/in/mohammed-ashad",
-      "username": "mohammed-ashad"
+      "title": "Interdimensional LinkedIn",
+      "link": "#",
+      "username": "rick.sanchez.c137"
     },
     {
-      "title": "Twitter",
-      "link": "https://twitter.com/elabinnovations",
-      "username": "elabinnovations"
-    },
-    {
-      "title": "Facebook",
-      "link": "https://www.facebook.com/mohammedashadmm/",
-      "username": "mohammedashadmm"
-    },
-    {
-      "title": "Instagram",
-      "link": "https://www.instagram.com/elab_innovations",
-      "username": "elab_innovations"
-    },
-    {
-      "title": "Telegram",
-      "link": "https://t.me/elab_innovations",
-      "username": "elab_innovations"
-    },
-    {
-      "title": "YouTube",
-      "link": "https://www.youtube.com/c/elabinnovations",
-      "username": "elabinnovations"
+      "title": "Multiverse Twitter",
+      "link": "#",
+      "username": "TheRealRickC137"
     }
   ]
 }

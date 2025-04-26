@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: E-Lab Portfolio Blocks
+ * Plugin Name: Elabins Portfolio Blocks
  * Plugin URI: https://elabins.com
  * Description: Gutenberg blocks for displaying a professional portfolio with GitHub stats, projects, and more.
  * Version: 1.0.0

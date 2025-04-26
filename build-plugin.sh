@@ -18,7 +18,7 @@ PLUGIN_NAME="elabins-portfolio-blocks"
 echo -e "${BLUE}=== Building ${PLUGIN_NAME} v${VERSION} ===${NC}\n"
 
 # Build assets
-echo -e "${YELLOW}🛠️  Building assets...${NC}"
+echo -e "${YELLOW}⚙️ Stage 1: Building assets...${NC}"
 npm run build
 if [ $? -ne 0 ]; then
     echo -e "${RED}❌ Build failed!${NC}"
@@ -29,10 +29,10 @@ echo -e "${GREEN}✅ Assets built successfully${NC}\n"
 # Create temporary directory
 TEMP_DIR="temp-${PLUGIN_NAME}"
 mkdir -p "${TEMP_DIR}"
-echo -e "${YELLOW}📁 Created temporary directory: ${TEMP_DIR}${NC}"
+echo -e "${YELLOW}⚙️ Stage 2: Creating temporary directory: ${TEMP_DIR}${NC}"
 
 # Copy files to temporary directory, excluding those in .buildignore
-echo -e "${YELLOW}📦 Copying files...${NC}"
+echo -e "${YELLOW}⚙️ Stage 3: Copying files...${NC}"
 rsync -av --exclude-from=.buildignore . "${TEMP_DIR}/"
 if [ $? -ne 0 ]; then
     echo -e "${RED}❌ File copy failed!${NC}"
@@ -41,8 +41,15 @@ fi
 echo -e "${GREEN}✅ Files copied successfully${NC}\n"
 
 # Create zip file
-echo -e "${YELLOW}🗜️  Creating zip file...${NC}"
+echo -e "${YELLOW}⚙️ Stage 4: Creating zip file...${NC}"
 ZIP_NAME="${PLUGIN_NAME}-v${VERSION}.zip"
+
+# Check if zip file already exists
+if [ -f "${ZIP_NAME}" ]; then
+    echo -e "${YELLOW}⚠️  Zip file already exists, removing...${NC}"
+    rm "${ZIP_NAME}"
+fi
+
 cd "${TEMP_DIR}"
 zip -r "../${ZIP_NAME}" . > /dev/null
 if [ $? -ne 0 ]; then
@@ -53,7 +60,7 @@ cd ..
 echo -e "${GREEN}✅ Zip file created: ${ZIP_NAME}${NC}\n"
 
 # Clean up
-echo -e "${YELLOW}🧹 Cleaning up...${NC}"
+echo -e "${YELLOW}⚙️ Stage 5: Cleaning up...${NC}"
 rm -rf "${TEMP_DIR}"
 echo -e "${GREEN}✅ Cleanup complete${NC}\n"
 

@@ -5,30 +5,39 @@
   "main": "index.js",
   "scripts": {
     "preview": "npm-run-all --parallel sync wpstart tailwindwatch",
-    "sync": "browser-sync start -p 'http://elabins-portfolio-block.localhost/' --files '**/*.php' 'build/*.js' 'build/*.css'",
     "buildwp": "wp-scripts build",
     "build": "npm-run-all --sequential buildwp tailwindbuild",
-    "wpstart": "wp-scripts start",
+    "wpstart": "cross-env NODE_OPTIONS=--experimental-vm-modules wp-scripts start",
     "wp-now": "npx @wp-now/wp-now start",
     "start": "npm-run-all --parallel wpstart tailwindwatch wp-now",
     "tailwindbuild": "tailwindcss -i ./src/index.css -o ./build/index.css --minify",
     "tailwindwatch": "tailwindcss -i ./src/index.css -o ./build/index.css --watch --minify",
     "prettier": "prettier",
-    "designstart": "live-server --open=./_designs/pages --watch=./_designs/**/*"
+    "gen-stats": "node .github/scripts/github-profile-generator.js",
+    "zip-plugin": "./build-plugin.sh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "portfolio",
+    "github-stats"
+  ],
+  "author": "Mohammed Ashad MM",
+  "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@prettier/plugin-php": "^0.22.1",
     "@tailwindcss/typography": "^0.5.2",
     "@wordpress/scripts": "^26.19.0",
     "browser-sync": "^2.27.10",
+    "cross-env": "^7.0.3",
     "live-server": "^1.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.10",
     "tailwindcss": "^3.1.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "dotenv": "^16.4.5"
+  }
 }

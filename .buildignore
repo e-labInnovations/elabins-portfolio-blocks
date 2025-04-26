@@ -9,6 +9,10 @@ webpack.config.js
 tailwind.config.js
 .prettierrc.json
 *.zip
+*-profile.json
+.env
+.env.example
+.github/
 
 # Build process files
 .buildignore

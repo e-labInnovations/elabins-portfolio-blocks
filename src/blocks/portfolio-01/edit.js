@@ -121,6 +121,23 @@ export default function Edit({ attributes, setAttributes }) {
               {__("Use Sample Data", "elabins-portfolio-blocks")}
             </Button>
           </div>
+          <p
+            className="components-base-control__help"
+            style={{ marginTop: "10px" }}
+          >
+            {__(
+              "Need help with portfolio data format or GitHub stats setup?",
+              "elabins-portfolio-blocks",
+            )}{" "}
+            <a
+              href="https://github.com/e-labInnovations/elabins-portfolio-blocks#portfolio-data-schema"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {__("View documentation", "elabins-portfolio-blocks")}{" "}
+              <i className="fas fa-external-link-alt" aria-hidden="true"></i>
+            </a>
+          </p>
         </PanelBody>
       </InspectorControls>
 

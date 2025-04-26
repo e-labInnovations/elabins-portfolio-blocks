@@ -1,0 +1,38 @@
+name: Generate GitHub Stats
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Run every hour
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  generate-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate GitHub Profile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/github-profile-generator.js ${{ github.repository_owner }}
+
+      - name: Move output file
+        run: |
+          mkdir -p assets/sample-data
+          mv ${{ github.repository_owner }}-profile.json assets/sample-data/github-stats.json
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add assets/sample-data/github-stats.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update GitHub stats" && git push)

@@ -1,7 +1,7 @@
 {
   "name": "elabins-portfolio-block",
   "version": "1.0.0",
-  "description": "",
+  "description": "WordPress Gutenberg plugin for displaying a professional portfolio with GitHub statistics",
   "main": "index.js",
   "scripts": {
     "preview": "npm-run-all --parallel sync wpstart tailwindwatch",

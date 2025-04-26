@@ -33,18 +33,18 @@ if (!$profileData || !$githubStatsData) {
 <section class="elabins-portfolio-01">
   <!--- Schema Data --->
   <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "<?php echo $profileData['profile']['name']; ?>",
-      "image": "<?php echo $profileData['profile']['profile_image']; ?>",
-      "jobTitle": "<?php echo $profileData['profile']['title']; ?>",
-      "url": "https://elabins.com/about-me/",
-      "sameAs": [
-        <?php foreach ($profileData['socialLinks'] as $link) : ?> "<?php echo $link['link']; ?>",
-        <?php endforeach; ?>
-      ]
-    }
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "<?php echo $profileData['profile']['name']; ?>",
+    "image": "<?php echo $profileData['profile']['profile_image']; ?>",
+    "jobTitle": "<?php echo $profileData['profile']['title']; ?>",
+    "url": "https://elabins.com/about-me/",
+    "sameAs": [
+      <?php foreach ($profileData['socialLinks'] as $link) : ?> "<?php echo $link['link']; ?>",
+      <?php endforeach; ?>
+    ]
+  }
   </script>
 
   <!-- Hero Section -->
@@ -69,14 +69,14 @@ if (!$profileData || !$githubStatsData) {
     <div class="about-text" data-aos="fade-right" data-aos-delay="100">
       <h2>About Me</h2>
       <?php foreach ($profileData['profile']['about'] as $paragraph) : ?>
-        <p><?php echo $paragraph; ?></p>
+      <p><?php echo $paragraph; ?></p>
       <?php endforeach; ?>
     </div>
     <div class="about-card" data-aos="fade-left" data-aos-delay="300">
       <h2>Quick Facts</h2>
       <ul>
         <?php foreach ($profileData['profile']['facts'] as $fact) : ?>
-          <li><i class="<?php echo $fact['icon']; ?>"></i> <?php echo $fact['content']; ?></li>
+        <li><i class="<?php echo $fact['icon']; ?>"></i> <?php echo $fact['content']; ?></li>
         <?php endforeach; ?>
       </ul>
     </div>
@@ -87,29 +87,29 @@ if (!$profileData || !$githubStatsData) {
     <h2>Education</h2>
     <div class="education-grid">
       <?php foreach ($profileData['education'] as $edu) : ?>
-        <div class="education-card" data-aos="fade-up">
-          <div class="education-meta">
-            <img src="<?php echo $edu['logo']; ?>" alt="<?php echo $edu['college']; ?>" />
-            <div class="meta-info">
-              <div class="duration">
-                <i class="fas fa-calendar-alt"></i>
-                <?php
+      <div class="education-card" data-aos="fade-up">
+        <div class="education-meta">
+          <img src="<?php echo $edu['logo']; ?>" alt="<?php echo $edu['college']; ?>" />
+          <div class="meta-info">
+            <div class="duration">
+              <i class="fas fa-calendar-alt"></i>
+              <?php
                 echo date('M Y', strtotime($edu['startDate'])) . ' - ' .
                   ($edu['endDate'] ? date('M Y', strtotime($edu['endDate'])) : 'Present');
                 ?>
-              </div>
-              <div class="university">
-                <i class="fas fa-university"></i>
-                <?php echo $edu['university']; ?>
-              </div>
+            </div>
+            <div class="university">
+              <i class="fas fa-university"></i>
+              <?php echo $edu['university']; ?>
             </div>
           </div>
-          <div class="education-content">
-            <h3 class="degree"><?php echo $edu['degree']; ?></h3>
-            <p class="field"><?php echo $edu['fieldOfStudy']; ?></p>
-            <p class="college"><?php echo $edu['college']; ?></p>
-          </div>
         </div>
+        <div class="education-content">
+          <h3 class="degree"><?php echo $edu['degree']; ?></h3>
+          <p class="field"><?php echo $edu['fieldOfStudy']; ?></p>
+          <p class="college"><?php echo $edu['college']; ?></p>
+        </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -119,37 +119,37 @@ if (!$profileData || !$githubStatsData) {
     <h2>Experience</h2>
     <div class="experience-grid">
       <?php foreach ($profileData['experience'] as $exp) : ?>
-        <div class="experience-card" data-aos="fade-up">
-          <div class="experience-meta">
-            <img src="<?php echo $exp['company']['logo']; ?>" alt="<?php echo $exp['company']['name']; ?>" />
-            <div class="meta-info">
-              <div class="duration">
-                <i class="fas fa-calendar-alt"></i>
-                <?php
+      <div class="experience-card" data-aos="fade-up">
+        <div class="experience-meta">
+          <img src="<?php echo $exp['company']['logo']; ?>" alt="<?php echo $exp['company']['name']; ?>" />
+          <div class="meta-info">
+            <div class="duration">
+              <i class="fas fa-calendar-alt"></i>
+              <?php
                 echo date('M Y', strtotime($exp['startDate'])) . ' - ' .
                   ($exp['endDate'] ? date('M Y', strtotime($exp['endDate'])) : 'Present');
                 ?>
-              </div>
-              <div class="location">
-                <i class="fas fa-map-marker-alt"></i>
-                <?php echo $exp['location']; ?> • <?php echo $exp['locationType']; ?>
-              </div>
             </div>
-          </div>
-          <div class="experience-content">
-            <h3 class="title"><?php echo $exp['title']; ?></h3>
-            <a href="<?php echo $exp['company']['link']; ?>" target="_blank" class="company">
-              <?php echo $exp['company']['name']; ?>
-              <i class="fas fa-external-link-alt"></i>
-            </a>
-            <div class="type">
-              <span class="badge"><?php echo $exp['employmentType']; ?></span>
+            <div class="location">
+              <i class="fas fa-map-marker-alt"></i>
+              <?php echo $exp['location']; ?> • <?php echo $exp['locationType']; ?>
             </div>
-            <?php if ($exp['description']): ?>
-              <p class="description"><?php echo $exp['description']; ?></p>
-            <?php endif; ?>
           </div>
         </div>
+        <div class="experience-content">
+          <h3 class="title"><?php echo $exp['title']; ?></h3>
+          <a href="<?php echo $exp['company']['link']; ?>" target="_blank" class="company">
+            <?php echo $exp['company']['name']; ?>
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <div class="type">
+            <span class="badge"><?php echo $exp['employmentType']; ?></span>
+          </div>
+          <?php if ($exp['description']): ?>
+          <p class="description"><?php echo $exp['description']; ?></p>
+          <?php endif; ?>
+        </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -160,70 +160,70 @@ if (!$profileData || !$githubStatsData) {
     <h2>Projects</h2>
     <div class="projects-grid">
       <?php foreach ($profileData['projects'] as $projectIndex => $project) : ?>
-        <div class="project-card" data-aos="fade-up">
-          <div class="project-header">
-            <div class="header-content">
-              <h3><?php echo $project['name']; ?></h3>
-              <div class="duration">
-                <i class="fas fa-calendar-alt"></i>
-                <?php
+      <div class="project-card" data-aos="fade-up">
+        <div class="project-header">
+          <div class="header-content">
+            <h3><?php echo $project['name']; ?></h3>
+            <div class="duration">
+              <i class="fas fa-calendar-alt"></i>
+              <?php
                 echo date('M Y', strtotime($project['startDate'])) . ' - ' .
                   ($project['endDate'] ? date('M Y', strtotime($project['endDate'])) : 'Present');
                 ?>
-              </div>
-            </div>
-            <div class="header-links">
-              <?php if (!empty($project['links']['github'])): ?>
-                <a href="<?php echo $project['links']['github']; ?>" target="_blank" class="project-link"
-                  data-tooltip="View on GitHub">
-                  <i class="fab fa-github"></i>
-                </a>
-              <?php endif; ?>
-              <?php if (!empty($project['links']['website'])): ?>
-                <a href="<?php echo $project['links']['website']; ?>" target="_blank" class="project-link"
-                  data-tooltip="Visit Website">
-                  <i class="fas fa-globe"></i>
-                </a>
-              <?php endif; ?>
-              <?php if (empty($project['links'])): ?>
-                <span class="project-link private-link" data-tooltip="Private Project">
-                  <i class="fas fa-lock"></i>
-                </span>
-              <?php endif; ?>
             </div>
           </div>
+          <div class="header-links">
+            <?php if (!empty($project['links']['github'])): ?>
+            <a href="<?php echo $project['links']['github']; ?>" target="_blank" class="project-link"
+              data-tooltip="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <?php endif; ?>
+            <?php if (!empty($project['links']['website'])): ?>
+            <a href="<?php echo $project['links']['website']; ?>" target="_blank" class="project-link"
+              data-tooltip="Visit Website">
+              <i class="fas fa-globe"></i>
+            </a>
+            <?php endif; ?>
+            <?php if (empty($project['links']) || (empty($project['links']['github']) && empty($project['links']['website']))): ?>
+            <span class="project-link private-link" data-tooltip="Private Project">
+              <i class="fas fa-lock"></i>
+            </span>
+            <?php endif; ?>
+          </div>
+        </div>
 
-          <div class="project-content">
-            <p class="description">
-              <?php
+        <div class="project-content">
+          <p class="description">
+            <?php
               $truncated_description = strlen($project['description']) > 150 ?
                 substr($project['description'], 0, 150) . '...' :
                 $project['description'];
               echo $truncated_description;
               ?>
-            </p>
+          </p>
 
-            <div class="skills-list">
-              <?php
+          <div class="skills-list">
+            <?php
               $displaySkills = array_slice($project['skills'], 0, 3);
               foreach ($displaySkills as $skill):
               ?>
-                <span class="skill-tag" data-tooltip="<?php echo $skill; ?>">
-                  <?php echo $skill; ?>
-                </span>
-              <?php endforeach; ?>
-              <?php if (count($project['skills']) > 3): ?>
-                <span class="skill-tag more-skills" data-tooltip="Click to view all technologies">
-                  +<?php echo count($project['skills']) - 3; ?> more
-                </span>
-              <?php endif; ?>
-            </div>
-
-            <button class="view-details-btn" data-project-index="<?php echo $projectIndex; ?>">
-              View Details <i class="fas fa-external-link-alt"></i>
-            </button>
+            <span class="skill-tag" data-tooltip="<?php echo $skill; ?>">
+              <?php echo $skill; ?>
+            </span>
+            <?php endforeach; ?>
+            <?php if (count($project['skills']) > 3): ?>
+            <span class="skill-tag more-skills" data-tooltip="Click to view all technologies">
+              +<?php echo count($project['skills']) - 3; ?> more
+            </span>
+            <?php endif; ?>
           </div>
+
+          <button class="view-details-btn" data-project-index="<?php echo $projectIndex; ?>">
+            View Details <i class="fas fa-external-link-alt"></i>
+          </button>
         </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -267,17 +267,17 @@ if (!$profileData || !$githubStatsData) {
 
         <div class="modal-media">
           <div class="media-tabs">
-            <button class="tab-btn active" data-tab="screenshots">
-              <i class="fas fa-images"></i> Screenshots
+            <button class="tab-btn active" data-tab="images">
+              <i class="fas fa-images"></i> Images
             </button>
             <button class="tab-btn" data-tab="videos">
               <i class="fas fa-video"></i> Videos
             </button>
           </div>
           <div class="media-content">
-            <div class="tab-content screenshots active">
+            <div class="tab-content images active">
               <div class="media-grid">
-                <!-- Screenshots will be populated by JavaScript -->
+                <!-- Images will be populated by JavaScript -->
               </div>
             </div>
             <div class="tab-content videos">
@@ -315,15 +315,15 @@ if (!$profileData || !$githubStatsData) {
     <h2>Tech Stack & Tools</h2>
     <div class="skills-grid">
       <?php foreach ($profileData['techStack'] as $tech): ?>
-        <a href="<?php echo $tech['link']; ?>" target="_blank" class="skill-item" data-aos="zoom-in"
-          data-tooltip="<?php echo $tech['name']; ?>">
-          <div class="skill-icon">
-            <img src="<?php echo $tech['image']; ?>" alt="<?php echo $tech['name']; ?>" loading="lazy" />
-          </div>
-          <span class="skill-name">
-            <?php echo $tech['name']; ?>
-          </span>
-        </a>
+      <a href="<?php echo $tech['link']; ?>" target="_blank" class="skill-item" data-aos="zoom-in"
+        data-tooltip="<?php echo $tech['name']; ?>">
+        <div class="skill-icon">
+          <img src="<?php echo $tech['image']; ?>" alt="<?php echo $tech['name']; ?>" loading="lazy" />
+        </div>
+        <span class="skill-name">
+          <?php echo $tech['name']; ?>
+        </span>
+      </a>
       <?php endforeach; ?>
     </div>
   </div>
@@ -333,36 +333,36 @@ if (!$profileData || !$githubStatsData) {
     <h2>Honors & Awards</h2>
     <div class="awards-grid">
       <?php foreach ($profileData['honorsAndAwards'] as $award): ?>
-        <div class="award-card" data-aos="fade-up">
-          <div class="award-header">
-            <?php if (!empty($award['image'])): ?>
-              <img src="<?php echo $award['image']; ?>" alt="<?php echo $award['title']; ?>" />
-            <?php else: ?>
-              <div class="award-icon">
-                <i class="fas fa-trophy"></i>
-              </div>
-            <?php endif; ?>
-            <div class="award-date">
-              <i class="fas fa-calendar"></i>
-              <?php echo date('M Y', strtotime($award['issueDate'])); ?>
-            </div>
+      <div class="award-card" data-aos="fade-up">
+        <div class="award-header">
+          <?php if (!empty($award['image'])): ?>
+          <img src="<?php echo $award['image']; ?>" alt="<?php echo $award['title']; ?>" />
+          <?php else: ?>
+          <div class="award-icon">
+            <i class="fas fa-trophy"></i>
           </div>
-
-          <div class="award-content">
-            <h3><?php echo $award['title']; ?></h3>
-            <div class="award-issuer">
-              <i class="fas fa-award"></i>
-              <?php echo $award['issuer']; ?>
-            </div>
-            <p class="award-description"><?php echo $award['description']; ?></p>
-            <?php if (!empty($award['link'])): ?>
-              <a href="<?php echo $award['link']; ?>" target="_blank" class="award-link" data-tooltip="View award details">
-                Learn More
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            <?php endif; ?>
+          <?php endif; ?>
+          <div class="award-date">
+            <i class="fas fa-calendar"></i>
+            <?php echo date('M Y', strtotime($award['issueDate'])); ?>
           </div>
         </div>
+
+        <div class="award-content">
+          <h3><?php echo $award['title']; ?></h3>
+          <div class="award-issuer">
+            <i class="fas fa-award"></i>
+            <?php echo $award['issuer']; ?>
+          </div>
+          <p class="award-description"><?php echo $award['description']; ?></p>
+          <?php if (!empty($award['link'])): ?>
+          <a href="<?php echo $award['link']; ?>" target="_blank" class="award-link" data-tooltip="View award details">
+            Learn More
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <?php endif; ?>
+        </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -489,36 +489,36 @@ if (!$profileData || !$githubStatsData) {
             'shell' => 'bash'
           ];
         ?>
-          <div class="language-card" data-aos="zoom-in">
-            <div class="language-header">
-              <div class="language-icon">
-                <img src="https://skillicons.dev/icons?i=<?php
+        <div class="language-card" data-aos="zoom-in">
+          <div class="language-header">
+            <div class="language-icon">
+              <img src="https://skillicons.dev/icons?i=<?php
                                                           echo isset($replacements[$lang_icon]) ? $replacements[$lang_icon] : $lang_icon;
                                                           ?>" alt="<?php echo $lang; ?>">
-              </div>
-              <div class="language-name">
-                <h4><?php echo $lang; ?></h4>
-                <p><?php echo number_format($percentage, 1); ?>% of commits</p>
-              </div>
             </div>
-            <div class="language-stats">
-              <div class="stat-item" data-tooltip="<?php echo $repoCount; ?> Repositories">
-                <i class="fas fa-code-branch"></i>
-                <span><?php echo $repoCount; ?></span>
-              </div>
-              <div class="stat-item" data-tooltip="<?php echo $commits; ?> Commits">
-                <i class="fas fa-code"></i>
-                <span><?php echo $commits; ?></span>
-              </div>
-              <div class="stat-item" data-tooltip="<?php echo $starCount; ?> Stars">
-                <i class="fas fa-star"></i>
-                <span><?php echo $starCount; ?></span>
-              </div>
-            </div>
-            <div class="language-progress">
-              <div class="progress-bar" style="width: <?php echo $percentage; ?>%"></div>
+            <div class="language-name">
+              <h4><?php echo $lang; ?></h4>
+              <p><?php echo number_format($percentage, 1); ?>% of commits</p>
             </div>
           </div>
+          <div class="language-stats">
+            <div class="stat-item" data-tooltip="<?php echo $repoCount; ?> Repositories">
+              <i class="fas fa-code-branch"></i>
+              <span><?php echo $repoCount; ?></span>
+            </div>
+            <div class="stat-item" data-tooltip="<?php echo $commits; ?> Commits">
+              <i class="fas fa-code"></i>
+              <span><?php echo $commits; ?></span>
+            </div>
+            <div class="stat-item" data-tooltip="<?php echo $starCount; ?> Stars">
+              <i class="fas fa-star"></i>
+              <span><?php echo $starCount; ?></span>
+            </div>
+          </div>
+          <div class="language-progress">
+            <div class="progress-bar" style="width: <?php echo $percentage; ?>%"></div>
+          </div>
+        </div>
         <?php endforeach; ?>
       </div>
     </div>
@@ -536,25 +536,25 @@ if (!$profileData || !$githubStatsData) {
           $stars = $githubStatsData['repoStarCount'][$repo] ?? 0;
           $description = $githubStatsData['repoCommitCountDescriptions'][$repo] ?? 'No description available';
         ?>
-          <div class="repo-card" data-aos="fade-up">
-            <div class="repo-header">
-              <a href="<?php echo $githubBaseUrl . '/' . $repo; ?>" target="_blank" class="repo-name"
-                data-tooltip="View repository">
-                <?php echo $repo; ?>
-              </a>
-              <div class="repo-stats">
-                <div class="stat-item" data-tooltip="<?php echo $commits; ?> Commits">
-                  <i class="fas fa-code"></i>
-                  <span><?php echo $commits; ?></span>
-                </div>
-                <div class="stat-item" data-tooltip="<?php echo $stars; ?> Stars">
-                  <i class="fas fa-star"></i>
-                  <span><?php echo $stars; ?></span>
-                </div>
+        <div class="repo-card" data-aos="fade-up">
+          <div class="repo-header">
+            <a href="<?php echo $githubBaseUrl . '/' . $repo; ?>" target="_blank" class="repo-name"
+              data-tooltip="View repository">
+              <?php echo $repo; ?>
+            </a>
+            <div class="repo-stats">
+              <div class="stat-item" data-tooltip="<?php echo $commits; ?> Commits">
+                <i class="fas fa-code"></i>
+                <span><?php echo $commits; ?></span>
+              </div>
+              <div class="stat-item" data-tooltip="<?php echo $stars; ?> Stars">
+                <i class="fas fa-star"></i>
+                <span><?php echo $stars; ?></span>
               </div>
             </div>
-            <p class="repo-description"><?php echo $description; ?></p>
           </div>
+          <p class="repo-description"><?php echo $description; ?></p>
+        </div>
         <?php endforeach; ?>
       </div>
     </div>
@@ -580,10 +580,10 @@ if (!$profileData || !$githubStatsData) {
               default => 'fas fa-link'
             };
           ?>
-            <a href="<?php echo $social['link']; ?>" target="_blank" class="social-link"
-              data-tooltip="<?php echo $social['title']; ?>" data-aos="zoom-in" data-aos-delay="<?php echo $delay; ?>">
-              <i class="<?php echo $icon; ?>"></i>
-            </a>
+          <a href="<?php echo $social['link']; ?>" target="_blank" class="social-link"
+            data-tooltip="<?php echo $social['title']; ?>" data-aos="zoom-in" data-aos-delay="<?php echo $delay; ?>">
+            <i class="<?php echo $icon; ?>"></i>
+          </a>
           <?php
             $delay += 50;
           endforeach;

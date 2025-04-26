@@ -239,9 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalLinks = modal.querySelector(".modal-links");
     const modalCollaborators = modal.querySelector(".modal-collaborators");
     const modalSkills = modal.querySelector(".modal-skills");
-    const screenshotsTab = modal.querySelector(
-      ".tab-content.screenshots .media-grid",
-    );
+    const imagesTab = modal.querySelector(".tab-content.images .media-grid");
     const videosTab = modal.querySelector(".tab-content.videos .media-grid");
 
     // Set basic information
@@ -282,35 +280,35 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle media tabs visibility
     const mediaTabs = modal.querySelector(".media-tabs");
     const mediaSection = modal.querySelector(".modal-media");
-    const hasScreenshots = project.media?.screenshots?.length > 0;
+    const hasImages = project.media?.images?.length > 0;
     const hasVideos = project.media?.videos?.length > 0;
 
-    if (!hasScreenshots && !hasVideos) {
+    if (!hasImages && !hasVideos) {
       mediaSection.style.display = "none";
     } else {
       mediaSection.style.display = "block";
-      mediaTabs.style.display = hasScreenshots && hasVideos ? "flex" : "none";
+      mediaTabs.style.display = hasImages && hasVideos ? "flex" : "none";
 
       // Show appropriate tab
-      if (!hasScreenshots) {
+      if (!hasImages) {
         switchTab("videos");
       } else if (!hasVideos) {
-        switchTab("screenshots");
+        switchTab("images");
       }
     }
 
-    // Handle screenshots
-    if (hasScreenshots) {
-      screenshotsTab.innerHTML = project.media.screenshots
+    // Handle images
+    if (hasImages) {
+      imagesTab.innerHTML = project.media.images
         .map(
-          (screenshot) => `
+          (image) => `
         <div class="media-item">
-          <img src="${screenshot}" alt="Project Screenshot" loading="lazy" />
+          <img src="${image}" alt="Project Images" loading="lazy" />
           <div class="media-overlay">
-            <button class="preview-btn" data-media="${screenshot}" data-type="image">
+            <button class="preview-btn" data-media="${image}" data-type="image">
               <i class="fas fa-expand"></i>
             </button>
-            <a href="${screenshot}" target="_blank" class="open-btn" data-tooltip="Open in new tab">
+            <a href="${image}" target="_blank" class="open-btn" data-tooltip="Open in new tab">
               <i class="fas fa-external-link-alt"></i>
             </a>
           </div>
@@ -319,8 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
         )
         .join("");
     } else {
-      screenshotsTab.innerHTML =
-        '<p class="no-media">No screenshots available</p>';
+      imagesTab.innerHTML = '<p class="no-media">No images available</p>';
     }
 
     // Handle videos

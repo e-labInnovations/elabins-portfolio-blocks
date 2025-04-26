@@ -30,33 +30,122 @@ if (!$profileData || !$githubStatsData) {
 }
 ?>
 
-<section class="elabins-portfolio-01">
-  <!--- Schema Data --->
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Person",
-    "name": "<?php echo $profileData['profile']['name']; ?>",
-    "image": "<?php echo $profileData['profile']['profile_image']; ?>",
-    "jobTitle": "<?php echo $profileData['profile']['title']; ?>",
-    "url": "https://elabins.com/about-me/",
-    "sameAs": [
-      <?php foreach ($profileData['socialLinks'] as $link) : ?> "<?php echo $link['link']; ?>",
+<!--- Schema Data --->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "<?php echo htmlspecialchars($profileData['profile']['name'], ENT_QUOTES, 'UTF-8'); ?>",
+  "image": "<?php echo htmlspecialchars($profileData['profile']['profile_image'], ENT_QUOTES, 'UTF-8'); ?>",
+  "jobTitle": "<?php echo htmlspecialchars($profileData['profile']['title'], ENT_QUOTES, 'UTF-8'); ?>",
+  "url": "https://elabins.com/about-me/",
+  "description": "<?php echo htmlspecialchars(strip_tags($profileData['profile']['about'][0]), ENT_QUOTES, 'UTF-8'); ?>",
+  "sameAs": [
+    <?php
+      $uniqueLinks = array_unique(array_column($profileData['socialLinks'], 'link'));
+      foreach ($uniqueLinks as $index => $link):
+      ?> "<?php echo htmlspecialchars($link, ENT_QUOTES, 'UTF-8'); ?>"
+    <?php echo $index < count($uniqueLinks) - 1 ? ',' : ''; ?>
+    <?php endforeach; ?>
+  ],
+  "alumniOf": [
+    <?php
+      $uniqueEducation = array_unique($profileData['education'], SORT_REGULAR);
+      foreach ($uniqueEducation as $index => $edu):
+      ?> {
+      "@type": "EducationalOrganization",
+      "name": "<?php echo htmlspecialchars($edu['college'], ENT_QUOTES, 'UTF-8'); ?>",
+      "url": "<?php echo htmlspecialchars($edu['logo'], ENT_QUOTES, 'UTF-8'); ?>"
+    }
+    <?php echo $index < count($uniqueEducation) - 1 ? ',' : ''; ?>
+    <?php endforeach; ?>
+  ],
+  "worksFor": [
+    <?php
+      $uniqueExperience = array_unique($profileData['experience'], SORT_REGULAR);
+      foreach ($uniqueExperience as $index => $exp):
+      ?> {
+      "@type": "Organization",
+      "name": "<?php echo htmlspecialchars($exp['company']['name'], ENT_QUOTES, 'UTF-8'); ?>",
+      "url": "<?php echo htmlspecialchars($exp['company']['link'], ENT_QUOTES, 'UTF-8'); ?>",
+      "logo": "<?php echo htmlspecialchars($exp['company']['logo'], ENT_QUOTES, 'UTF-8'); ?>"
+    }
+    <?php echo $index < count($uniqueExperience) - 1 ? ',' : ''; ?>
+    <?php endforeach; ?>
+  ],
+  "award": [
+    <?php
+      $uniqueAwards = array_unique($profileData['honorsAndAwards'], SORT_REGULAR);
+      foreach ($uniqueAwards as $index => $award):
+      ?> {
+      "@type": "Award",
+      "name": "<?php echo htmlspecialchars($award['title'], ENT_QUOTES, 'UTF-8'); ?>",
+      "description": "<?php echo htmlspecialchars($award['description'], ENT_QUOTES, 'UTF-8'); ?>",
+      "issuer": {
+        "@type": "Organization",
+        "name": "<?php echo htmlspecialchars($award['issuer'], ENT_QUOTES, 'UTF-8'); ?>"
+      },
+      "dateAwarded": "<?php echo htmlspecialchars($award['issueDate'], ENT_QUOTES, 'UTF-8'); ?>"
+    }
+    <?php echo $index < count($uniqueAwards) - 1 ? ',' : ''; ?>
+    <?php endforeach; ?>
+  ],
+  "knowsAbout": [
+    <?php
+      $uniqueSkills = array_unique(array_column($profileData['techStack'], 'name'));
+      $skills = array_map(function ($skill) {
+        return '"' . htmlspecialchars($skill, ENT_QUOTES, 'UTF-8') . '"';
+      }, $uniqueSkills);
+      echo implode(', ', $skills);
+      ?>
+  ],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "<?php echo htmlspecialchars($profileData['profile']['title'], ENT_QUOTES, 'UTF-8'); ?>",
+    "skills": [
+      <?php echo implode(', ', $skills); ?>
+    ]
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      <?php
+        $topProjects = array_slice($profileData['projects'], 0, 5);
+        foreach ($topProjects as $index => $project):
+        ?> {
+        "@type": "SoftwareSourceCode",
+        "name": "<?php echo htmlspecialchars($project['name'], ENT_QUOTES, 'UTF-8'); ?>",
+        "description": "<?php echo htmlspecialchars($project['description'], ENT_QUOTES, 'UTF-8'); ?>",
+        "programmingLanguage": [
+          <?php
+              $languages = array_map(function ($lang) {
+                return '"' . htmlspecialchars(trim($lang), ENT_QUOTES, 'UTF-8') . '"';
+              }, array_unique($project['skills']));
+              echo implode(', ', $languages);
+              ?>
+        ],
+        <?php if (!empty($project['links']['github'])): ?> "codeRepository": "<?php echo htmlspecialchars($project['links']['github'], ENT_QUOTES, 'UTF-8'); ?>",
+        <?php endif; ?> "dateCreated": "<?php echo htmlspecialchars($project['startDate'], ENT_QUOTES, 'UTF-8'); ?>",
+        "dateModified": "<?php echo htmlspecialchars($project['endDate'] ?? date('Y-m-d'), ENT_QUOTES, 'UTF-8'); ?>"
+      }
+      <?php echo $index < count($topProjects) - 1 ? ',' : ''; ?>
       <?php endforeach; ?>
     ]
   }
-  </script>
+}
+</script>
 
+<section class="elabins-portfolio-01" itemscope itemtype="http://schema.org/Person">
   <!-- Hero Section -->
-  <div class="hero-section" data-aos="fade-up">
-    <div class="hero-bg"></div>
+  <div class="hero-section" data-aos="fade-up" role="banner">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-content">
       <img class="profile-image" src="<?php echo $profileData['profile']['profile_image']; ?>"
-        alt="<?php echo $profileData['profile']['name']; ?>" data-aos="zoom-in" />
+        alt="<?php echo $profileData['profile']['name']; ?>'s profile photo" data-aos="zoom-in" itemprop="image" />
       <div class="name-title">
-        <h1 data-aos="fade-up" data-aos-delay="300"><?php echo $profileData['profile']['name']; ?></h1>
+        <h1 data-aos="fade-up" data-aos-delay="300" itemprop="name"><?php echo $profileData['profile']['name']; ?></h1>
         <div class="typewriter">
-          <h2>
+          <h2 itemprop="jobTitle">
             <?php echo $profileData['profile']['title']; ?>
           </h2>
         </div>
@@ -65,49 +154,52 @@ if (!$profileData || !$githubStatsData) {
   </div>
 
   <!-- About Section -->
-  <div class="about-section">
+  <div class="about-section" role="region" aria-label="About Me">
     <div class="about-text" data-aos="fade-right" data-aos-delay="100">
       <h2>About Me</h2>
       <?php foreach ($profileData['profile']['about'] as $paragraph) : ?>
-      <p><?php echo $paragraph; ?></p>
+      <p itemprop="description"><?php echo $paragraph; ?></p>
       <?php endforeach; ?>
     </div>
     <div class="about-card" data-aos="fade-left" data-aos-delay="300">
       <h2>Quick Facts</h2>
-      <ul>
+      <ul role="list">
         <?php foreach ($profileData['profile']['facts'] as $fact) : ?>
-        <li><i class="<?php echo $fact['icon']; ?>"></i> <?php echo $fact['content']; ?></li>
+        <li><i class="<?php echo $fact['icon']; ?>" aria-hidden="true"></i> <?php echo $fact['content']; ?></li>
         <?php endforeach; ?>
       </ul>
     </div>
   </div>
 
   <!-- Education Section -->
-  <div class="education-section" data-aos="fade-up">
+  <div class="education-section" data-aos="fade-up" role="region" aria-label="Education">
     <h2>Education</h2>
     <div class="education-grid">
       <?php foreach ($profileData['education'] as $edu) : ?>
-      <div class="education-card" data-aos="fade-up">
+      <div class="education-card" data-aos="fade-up" itemprop="alumniOf" itemscope
+        itemtype="http://schema.org/EducationalOrganization">
         <div class="education-meta">
-          <img src="<?php echo $edu['logo']; ?>" alt="<?php echo $edu['college']; ?>" />
+          <img src="<?php echo $edu['logo']; ?>" alt="<?php echo $edu['college']; ?> logo" itemprop="logo" />
           <div class="meta-info">
             <div class="duration">
-              <i class="fas fa-calendar-alt"></i>
-              <?php
-                echo date('M Y', strtotime($edu['startDate'])) . ' - ' .
-                  ($edu['endDate'] ? date('M Y', strtotime($edu['endDate'])) : 'Present');
-                ?>
+              <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+              <time datetime="<?php echo $edu['startDate']; ?>">
+                <?php
+                  echo date('M Y', strtotime($edu['startDate'])) . ' - ' .
+                    ($edu['endDate'] ? date('M Y', strtotime($edu['endDate'])) : 'Present');
+                  ?>
+              </time>
             </div>
             <div class="university">
-              <i class="fas fa-university"></i>
-              <?php echo $edu['university']; ?>
+              <i class="fas fa-university" aria-hidden="true"></i>
+              <span itemprop="name"><?php echo $edu['university']; ?></span>
             </div>
           </div>
         </div>
         <div class="education-content">
-          <h3 class="degree"><?php echo $edu['degree']; ?></h3>
-          <p class="field"><?php echo $edu['fieldOfStudy']; ?></p>
-          <p class="college"><?php echo $edu['college']; ?></p>
+          <h3 class="degree" itemprop="award"><?php echo $edu['degree']; ?></h3>
+          <p class="field" itemprop="studyField"><?php echo $edu['fieldOfStudy']; ?></p>
+          <p class="college" itemprop="name"><?php echo $edu['college']; ?></p>
         </div>
       </div>
       <?php endforeach; ?>
@@ -115,38 +207,43 @@ if (!$profileData || !$githubStatsData) {
   </div>
 
   <!-- Experience Section -->
-  <div class="experience-section" data-aos="fade-up">
+  <div class="experience-section" data-aos="fade-up" role="region" aria-label="Work Experience">
     <h2>Experience</h2>
     <div class="experience-grid">
       <?php foreach ($profileData['experience'] as $exp) : ?>
-      <div class="experience-card" data-aos="fade-up">
+      <div class="experience-card" data-aos="fade-up" itemprop="workExperience" itemscope
+        itemtype="http://schema.org/WorkExperience">
         <div class="experience-meta">
-          <img src="<?php echo $exp['company']['logo']; ?>" alt="<?php echo $exp['company']['name']; ?>" />
+          <img src="<?php echo $exp['company']['logo']; ?>" alt="<?php echo $exp['company']['name']; ?> logo" />
           <div class="meta-info">
             <div class="duration">
-              <i class="fas fa-calendar-alt"></i>
-              <?php
-                echo date('M Y', strtotime($exp['startDate'])) . ' - ' .
-                  ($exp['endDate'] ? date('M Y', strtotime($exp['endDate'])) : 'Present');
-                ?>
+              <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+              <time datetime="<?php echo $exp['startDate']; ?>">
+                <?php
+                  echo date('M Y', strtotime($exp['startDate'])) . ' - ' .
+                    ($exp['endDate'] ? date('M Y', strtotime($exp['endDate'])) : 'Present');
+                  ?>
+              </time>
             </div>
             <div class="location">
-              <i class="fas fa-map-marker-alt"></i>
-              <?php echo $exp['location']; ?> • <?php echo $exp['locationType']; ?>
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <span itemprop="location"><?php echo $exp['location']; ?></span> •
+              <span itemprop="employmentType"><?php echo $exp['locationType']; ?></span>
             </div>
           </div>
         </div>
         <div class="experience-content">
-          <h3 class="title"><?php echo $exp['title']; ?></h3>
-          <a href="<?php echo $exp['company']['link']; ?>" target="_blank" class="company">
-            <?php echo $exp['company']['name']; ?>
-            <i class="fas fa-external-link-alt"></i>
+          <h3 class="title" itemprop="jobTitle"><?php echo $exp['title']; ?></h3>
+          <a href="<?php echo $exp['company']['link']; ?>" target="_blank" class="company" itemprop="worksFor" itemscope
+            itemtype="http://schema.org/Organization">
+            <span itemprop="name"><?php echo $exp['company']['name']; ?></span>
+            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
           </a>
           <div class="type">
-            <span class="badge"><?php echo $exp['employmentType']; ?></span>
+            <span class="badge" itemprop="employmentType"><?php echo $exp['employmentType']; ?></span>
           </div>
           <?php if ($exp['description']): ?>
-          <p class="description"><?php echo $exp['description']; ?></p>
+          <p class="description" itemprop="description"><?php echo $exp['description']; ?></p>
           <?php endif; ?>
         </div>
       </div>
@@ -155,46 +252,52 @@ if (!$profileData || !$githubStatsData) {
   </div>
 
   <!-- Projects Section -->
-  <div class="projects-section" data-aos="fade-up"
+  <div class="projects-section" data-aos="fade-up" role="region" aria-label="Projects"
     data-projects='<?php echo htmlspecialchars(json_encode($profileData['projects']), ENT_QUOTES, 'UTF-8'); ?>'>
     <h2>Projects</h2>
     <div class="projects-grid">
       <?php foreach ($profileData['projects'] as $projectIndex => $project) : ?>
-      <div class="project-card" data-aos="fade-up">
+      <div class="project-card" data-aos="fade-up" itemprop="workExample" itemscope
+        itemtype="http://schema.org/SoftwareApplication">
         <div class="project-header">
           <div class="header-content">
-            <h3><?php echo $project['name']; ?></h3>
+            <h3 itemprop="name"><?php echo $project['name']; ?></h3>
             <div class="duration">
-              <i class="fas fa-calendar-alt"></i>
-              <?php
-                echo date('M Y', strtotime($project['startDate'])) . ' - ' .
-                  ($project['endDate'] ? date('M Y', strtotime($project['endDate'])) : 'Present');
-                ?>
+              <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+              <time datetime="<?php echo $project['startDate']; ?>">
+                <?php
+                  echo date('M Y', strtotime($project['startDate'])) . ' - ' .
+                    ($project['endDate'] ? date('M Y', strtotime($project['endDate'])) : 'Present');
+                  ?>
+              </time>
             </div>
           </div>
           <div class="header-links">
             <?php if (!empty($project['links']['github'])): ?>
             <a href="<?php echo $project['links']['github']; ?>" target="_blank" class="project-link"
-              data-tooltip="View on GitHub">
-              <i class="fab fa-github"></i>
+              data-tooltip="View on GitHub" itemprop="codeRepository">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span class="sr-only">View <?php echo $project['name']; ?> on GitHub</span>
             </a>
             <?php endif; ?>
             <?php if (!empty($project['links']['website'])): ?>
             <a href="<?php echo $project['links']['website']; ?>" target="_blank" class="project-link"
-              data-tooltip="Visit Website">
-              <i class="fas fa-globe"></i>
+              data-tooltip="Visit Website" itemprop="url">
+              <i class="fas fa-globe" aria-hidden="true"></i>
+              <span class="sr-only">Visit <?php echo $project['name']; ?> website</span>
             </a>
             <?php endif; ?>
             <?php if (empty($project['links']) || (empty($project['links']['github']) && empty($project['links']['website']))): ?>
             <span class="project-link private-link" data-tooltip="Private Project">
-              <i class="fas fa-lock"></i>
+              <i class="fas fa-lock" aria-hidden="true"></i>
+              <span class="sr-only">Private project</span>
             </span>
             <?php endif; ?>
           </div>
         </div>
 
         <div class="project-content">
-          <p class="description">
+          <p class="description" itemprop="description">
             <?php
               $truncated_description = strlen($project['description']) > 150 ?
                 substr($project['description'], 0, 150) . '...' :
@@ -203,14 +306,12 @@ if (!$profileData || !$githubStatsData) {
               ?>
           </p>
 
-          <div class="skills-list">
+          <div class="skills-list" itemprop="applicationCategory">
             <?php
               $displaySkills = array_slice($project['skills'], 0, 3);
               foreach ($displaySkills as $skill):
               ?>
-            <span class="skill-tag" data-tooltip="<?php echo $skill; ?>">
-              <?php echo $skill; ?>
-            </span>
+            <span class="skill-tag" data-tooltip="<?php echo $skill; ?>"><?php echo $skill; ?></span>
             <?php endforeach; ?>
             <?php if (count($project['skills']) > 3): ?>
             <span class="skill-tag more-skills" data-tooltip="Click to view all technologies">
@@ -219,8 +320,9 @@ if (!$profileData || !$githubStatsData) {
             <?php endif; ?>
           </div>
 
-          <button class="view-details-btn" data-project-index="<?php echo $projectIndex; ?>">
-            View Details <i class="fas fa-external-link-alt"></i>
+          <button class="view-details-btn" data-project-index="<?php echo $projectIndex; ?>"
+            aria-label="View details of <?php echo $project['name']; ?>">
+            View Details <i class="fas fa-external-link-alt" aria-hidden="true"></i>
           </button>
         </div>
       </div>

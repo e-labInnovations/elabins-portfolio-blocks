@@ -4,3 +4,4 @@ build/
 *.zip
 .env
 *-profile.json
+temp-*/

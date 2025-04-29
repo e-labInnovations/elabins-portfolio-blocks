@@ -4,7 +4,7 @@
  * Plugin Name: Elabins Portfolio Blocks
  * Plugin URI: https://elabins.com
  * Description: Gutenberg blocks for displaying a professional portfolio with GitHub stats, projects, and more.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Mohammed Ashad MM
  * Author URI: https://elabins.com
  * License: GPL v2 or later
